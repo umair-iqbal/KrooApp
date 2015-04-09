@@ -84,3 +84,20 @@ Route::get('/League_teams' ,'LeagueTeamsController@index');
 Route::get('/League_teams/{id}' ,'LeagueTeamsController@show');
 Route::get('/League_teams/Delete/{id}' ,'LeagueTeamsController@destroy');
 
+/*
+ *  League_game_levels Routes
+ */
+Route::get('/League_game_levels/Create/{leagueID}/{level_no}/{level_desc}/{is_active}/{created_on}' ,'LeagueGameLevelsController@store');
+Route::get('/League_game_levels/Update/{sr_no}/{leagueID}/{level_no}/{level_desc}/{is_active}/{created_on}' ,'LeagueGameLevelsController@edit');
+Route::get('/League_game_levels' ,'LeagueGameLevelsController@index');
+Route::get('/League_game_levels/{id}' ,'LeagueGameLevelsController@show');
+Route::get('/League_game_levels/Delete/{id}' ,'LeagueGameLevelsController@destroy');
+
+/*
+ *  Team_profiles Routes
+ */
+Route::get('/Team_profiles/Create/{teamID}/{email}/{phone_no}/{is_active}/{created_on}/{last_updated_on}' ,'TeamProfilesController@store');
+Route::get('/Team_profiles/Update/{id}/{teamID}/{email}/{phone_no}/{is_active}/{created_on}/{last_updated_on}' ,'TeamProfilesController@edit');
+Route::get('/Team_profiles' ,'TeamProfilesController@index');
+Route::get('/Team_profiles/{id}' ,'TeamProfilesController@show');
+Route::get('/Team_profiles/Delete/{id}' ,'TeamProfilesController@destroy');
