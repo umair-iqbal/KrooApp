@@ -101,3 +101,12 @@ Route::get('/Team_profiles/Update/{id}/{teamID}/{email}/{phone_no}/{is_active}/{
 Route::get('/Team_profiles' ,'TeamProfilesController@index');
 Route::get('/Team_profiles/{id}' ,'TeamProfilesController@show');
 Route::get('/Team_profiles/Delete/{id}' ,'TeamProfilesController@destroy');
+
+/*
+ *  Team_avatars Routes
+ */
+Route::get('/Team_avatars/Create/{teamID}/{avatarID}/{is_current_avatar}/{is_active}/{created_on}/{last_updated_on}' ,'TeamAvatarsController@store');
+Route::get('/Team_avatars/Update/{id}/{teamID}/{avatarID}/{is_current_avatar}/{is_active}/{created_on}/{last_updated_on}' ,'TeamAvatarsController@edit');
+Route::get('/Team_avatars' ,'TeamAvatarsController@index');
+Route::get('/Team_avatars/{id}' ,'TeamAvatarsController@show');
+Route::get('/Team_avatars/Delete/{id}' ,'TeamAvatarsController@destroy');
