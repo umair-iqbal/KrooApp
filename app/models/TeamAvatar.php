@@ -1,13 +1,13 @@
 <?php
 
-class TeamProfile extends \Eloquent {
+class TeamAvatar extends \Eloquent {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'team_profiles';
+    protected $table = 'team_avatars';
 
 
 
@@ -17,7 +17,6 @@ class TeamProfile extends \Eloquent {
      */
 
     public  $timestamps = false;
-    protected $fillable = array('team_id','email','phone_no','is_active','created_on', 'last_updated_on');
-
+    protected $fillable = array('team_id','avatar_id','is_current_avatar','is_active','created_on', 'last_updated_on');
 
 }
