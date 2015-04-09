@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KROO\app/views/Admin_profiles/edit.blade.php
