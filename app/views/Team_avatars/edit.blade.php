@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/Team_avatars/edit.blade.php

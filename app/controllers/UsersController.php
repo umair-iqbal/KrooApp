@@ -16,7 +16,7 @@ class UsersController extends \BaseController {
 	}
 
 
-    public function SignUp($userID,$user_category,$password,$is_active,$is_pass_changed,$is_thirdparty_user,$potential_points,$global_rank,$created_on,$last_login_date,$last_updated_on)
+    public function SignUp($userID,$user_category,$role_id,$password,$is_active,$is_pass_changed,$is_thirdparty_user,$potential_points,$global_rank,$created_on,$last_login_date,$last_updated_on)
     {
         $user = new User();
         if($created_on!="")
@@ -36,7 +36,7 @@ class UsersController extends \BaseController {
         $user->user_password=$password;
         $user->potential_points = $potential_points;
         $user->global_rank= $global_rank;
-       // $user->role_id = $role_id;
+        $user->role_id = $role_id;
         $user->is_active = $is_active;
         $user->is_pass_changed = $is_pass_changed;
         $user->is_thirdparty_user = $is_thirdparty_user;
@@ -96,7 +96,7 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($userID,$user_category,$password,$is_active,$is_pass_changed,$is_thirdparty_user,$potential_points,$global_rank,$created_on,$last_login_date,$last_updated_on)
+	public function edit($userID,$user_category,$role_id,$password,$is_active,$is_pass_changed,$is_thirdparty_user,$potential_points,$global_rank,$created_on,$last_login_date,$last_updated_on)
 	{
 
 
@@ -116,7 +116,7 @@ class UsersController extends \BaseController {
         //$user->save();
         DB::table('users')
             ->where('user_id', $userID)
-            ->update(array('user_category' =>$user_category,'user_password'=>$password,'potential_points'=>$potential_points,'global_rank'=>$global_rank,
+            ->update(array('user_category' =>$user_category,'role_id'=>$role_id,'user_password'=>$password,'potential_points'=>$potential_points,'global_rank'=>$global_rank,
                 'is_active'=>$is_active,'is_pass_changed'=>$is_pass_changed,'is_thirdparty_user'=>$is_thirdparty_user,'created_on'=>$created_on,'last_login_date'=>$last_login_date,
                  'last_updated_on'=>$last_updated_on));
 
