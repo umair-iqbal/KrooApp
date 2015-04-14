@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/mlb_event_scores/create.blade.php

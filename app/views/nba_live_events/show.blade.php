@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/nba_live_events/show.blade.php

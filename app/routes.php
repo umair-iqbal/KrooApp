@@ -160,8 +160,95 @@ Route::get('/nba_events/Delete/{id}' ,'NbaEventsController@destroy');
 /*
  *  Nfl_Events Routes
  */
-Route::get('/nfl_events/Create/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NbflEventsController@store');
-Route::get('/nfl_events/Update/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NbflEventsController@edit');
-Route::get('/nfl_events' ,'NbflEventsController@index');
-Route::get('/nfl_events/{id}' ,'NbflEventsController@show');
-Route::get('/nfl_events/Delete/{id}' ,'NbflEventsController@destroy');
+Route::get('/nfl_events/Create/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NflEventsController@store');
+Route::get('/nfl_events/Update/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NflEventsController@edit');
+Route::get('/nfl_events' ,'NflEventsController@index');
+Route::get('/nfl_events/{id}' ,'NflEventsController@show');
+Route::get('/nfl_events/Delete/{id}' ,'NflEventsController@destroy');
+
+/*
+ *  Nhl_Events Routes
+ */
+Route::get('/nhl_events/Create/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NhlEventsController@store');
+Route::get('/nhl_events/Update/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NhlEventsController@edit');
+Route::get('/nhl_events' ,'NhlEventsController@index');
+Route::get('/nhl_events/{id}' ,'NhlEventsController@show');
+Route::get('/nhl_events/Delete/{id}' ,'NhlEventsController@destroy');
+
+
+/*
+ *  Mlb_live_events Routes
+ */
+Route::get('/mlb_live_events/Create/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'MlbLiveEventsController@store');
+Route::get('/mlb_live_events/Update/{sr_no}/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'MlbLiveEventsController@edit');
+Route::get('/mlb_live_events' ,'MlbLiveEventsController@index');
+Route::get('/mlb_live_events/{id}' ,'MlbLiveEventsController@show');
+Route::get('/mlb_live_events/Delete/{id}' ,'MlbLiveEventsController@destroy');
+
+/*
+ *  Nba_live_events Routes
+ */
+Route::get('/nba_live_events/Create/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NbaLiveEventsController@store');
+Route::get('/nba_live_events/Update/{sr_no}/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NbaLiveEventsController@edit');
+Route::get('/nba_live_events' ,'NbaLiveEventsController@index');
+Route::get('/nba_live_events/{id}' ,'NbaLiveEventsController@show');
+Route::get('/nba_live_events/Delete/{id}' ,'NbaLiveEventsController@destroy');
+
+
+/*
+ *  Nfl_live_events Routes
+ */
+Route::get('/nfl_live_events/Create/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NflLiveEventsController@store');
+Route::get('/nfl_live_events/Update/{sr_no}/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NflLiveEventsController@edit');
+Route::get('/nfl_live_events' ,'NflLiveEventsController@index');
+Route::get('/nfl_live_events/{id}' ,'NflLiveEventsController@show');
+Route::get('/nfl_live_events/Delete/{id}' ,'NflLiveEventsController@destroy');
+
+/*
+ *  Nhl_live_events Routes
+ */
+Route::get('/nhl_live_events/Create/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NhlLiveEventsController@store');
+Route::get('/nhl_live_events/Update/{sr_no}/{event_id}/{season_id}/{season_year}/{season_type}/{league_id}/{status}/{home_team_id}/{away_team_id}/{venue_id}/{venue_name}/{venue_city}/{venue_country}/{venue_zip}/{venue_state}/{is_active}/{created_on}/{schedduled_on}/{last_update_on}' ,'NhlLiveEventsController@edit');
+Route::get('/nhl_live_events' ,'NhlLiveEventsController@index');
+Route::get('/nhl_live_events/{id}' ,'NhlLiveEventsController@show');
+Route::get('/nhl_live_events/Delete/{id}' ,'NhlLiveEventsController@destroy');
+
+
+/*
+ *  Mlb_event_scores Routes
+ */
+Route::get('/mlb_event_scores/Create/{event_id}/{h_runs}/{a_runs}/{h_pitches}/{a_pitches}/{h_balls}/{a_balls}/{h_strikes}/{a_strikes}/{h_strikes_outs}/{a_strikes_outs}/{h_doubles}/{a_doubles}/{h_triples}/{a_triples}/{h_home_runs}/{a_home_runs}/{h_works}/{a_works}/{h_errors}/{a_errors}/{h_hit_by_pitch}/{a_hit_by_pitch}/{h_double_plays}/{a_double_plays}/{inning_no}/{created_on}/{last_updated_on}' ,'MlbEventScoresController@store');
+Route::get('/mlb_event_scores/Update/{sr_no}/{event_id}/{h_runs}/{a_runs}/{h_pitches}/{a_pitches}/{h_balls}/{a_balls}/{h_strikes}/{a_strikes}/{h_strikes_outs}/{a_strikes_outs}/{h_doubles}/{a_doubles}/{h_triples}/{a_triples}/{h_home_runs}/{a_home_runs}/{h_works}/{a_works}/{h_errors}/{a_errors}/{h_hit_by_pitch}/{a_hit_by_pitch}/{h_double_plays}/{a_double_plays}/{inning_no}/{created_on}/{last_updated_on}' ,'MlbEventScoresController@edit');
+Route::get('/mlb_event_scores' ,'MlbEventScoresController@index');
+Route::get('/mlb_event_scores/{id}' ,'MlbEventScoresController@show');
+Route::get('/mlb_event_scores/Delete/{id}' ,'MlbEventScoresController@destroy');
+
+
+/*
+ *  Mlb_live_event_scores Routes
+ */
+Route::get('/mlb_live_event_scores/Create/{event_id}/{h_runs}/{a_runs}/{h_pitches}/{a_pitches}/{h_balls}/{a_balls}/{h_strikes}/{a_strikes}/{h_strikes_outs}/{a_strikes_outs}/{h_doubles}/{a_doubles}/{h_triples}/{a_triples}/{h_home_runs}/{a_home_runs}/{h_works}/{a_works}/{h_errors}/{a_errors}/{h_hit_by_pitch}/{a_hit_by_pitch}/{h_double_plays}/{a_double_plays}/{inning_no}/{created_on}/{last_updated_on}' ,'MlbLiveEventScoresController@store');
+Route::get('/mlb_live_event_scores/Update/{sr_no}/{event_id}/{h_runs}/{a_runs}/{h_pitches}/{a_pitches}/{h_balls}/{a_balls}/{h_strikes}/{a_strikes}/{h_strikes_outs}/{a_strikes_outs}/{h_doubles}/{a_doubles}/{h_triples}/{a_triples}/{h_home_runs}/{a_home_runs}/{h_works}/{a_works}/{h_errors}/{a_errors}/{h_hit_by_pitch}/{a_hit_by_pitch}/{h_double_plays}/{a_double_plays}/{inning_no}/{created_on}/{last_updated_on}' ,'MlbLiveEventScoresController@edit');
+Route::get('/mlb_live_event_scores' ,'MlbLiveEventScoresController@index');
+Route::get('/mlb_live_event_scores/{id}' ,'MlbLiveEventScoresController@show');
+Route::get('/mlb_live_event_scores/Delete/{id}' ,'MlbLiveEventScoresController@destroy');
+
+
+/*
+ *  Nba_event_scores Routes
+ */
+Route::get('/nba_event_scores/Create/{event_id}/{h_points}/{a_points}/{h_assists}/{a_assists}/{h_rebounds}/{a_rebounds}/{h_blocks}/{a_blocks}/{h_steals}/{a_steals}/{h_turnovers}/{a_turnovers}/{h_3pointers_made}/{a_3pointers_made}/{h_3pointers_attempt}/{a_3pointers_attempt}/{h_foul_shots_made}/{a_foul_shots_made}/{h_foul_shots_attempt}/{a_foul_shots_attempt}/{quarter_no}/{created_on}/{last_updated_on}' ,'NbaEventScoresController@store');
+Route::get('/nba_event_scores/Update/{sr_no}/{event_id}/{h_points}/{a_points}/{h_assists}/{a_assists}/{h_rebounds}/{a_rebounds}/{h_blocks}/{a_blocks}/{h_steals}/{a_steals}/{h_turnovers}/{a_turnovers}/{h_3pointers_made}/{a_3pointers_made}/{h_3pointers_attempt}/{a_3pointers_attempt}/{h_foul_shots_made}/{a_foul_shots_made}/{h_foul_shots_attempt}/{a_foul_shots_attempt}/{quarter_no}/{created_on}/{last_updated_on}' ,'NbaEventScoresController@edit');
+Route::get('/nba_event_scores' ,'NbaEventScoresController@index');
+Route::get('/nba_event_scores/{id}' ,'NbaEventScoresController@show');
+Route::get('/nba_event_scores/Delete/{id}' ,'NbaEventScoresController@destroy');
+
+
+/*
+ *  Nba_live_event_scores Routes
+ */
+Route::get('/nba_live_event_scores/Create/{event_id}/{h_points}/{a_points}/{h_assists}/{a_assists}/{h_rebounds}/{a_rebounds}/{h_blocks}/{a_blocks}/{h_steals}/{a_steals}/{h_turnovers}/{a_turnovers}/{h_3pointers_made}/{a_3pointers_made}/{h_3pointers_attempt}/{a_3pointers_attempt}/{h_foul_shots_made}/{a_foul_shots_made}/{h_foul_shots_attempt}/{a_foul_shots_attempt}/{quarter_no}/{created_on}/{last_updated_on}' ,'NbaLiveEventScoresController@store');
+Route::get('/nba_live_event_scores/Update/{sr_no}/{event_id}/{h_points}/{a_points}/{h_assists}/{a_assists}/{h_rebounds}/{a_rebounds}/{h_blocks}/{a_blocks}/{h_steals}/{a_steals}/{h_turnovers}/{a_turnovers}/{h_3pointers_made}/{a_3pointers_made}/{h_3pointers_attempt}/{a_3pointers_attempt}/{h_foul_shots_made}/{a_foul_shots_made}/{h_foul_shots_attempt}/{a_foul_shots_attempt}/{quarter_no}/{created_on}/{last_updated_on}' ,'NbaLiveEventScoresController@edit');
+Route::get('/nba_live_event_scores' ,'NbaLiveEventScoresController@index');
+Route::get('/nba_live_event_scores/{id}' ,'NbaLiveEventScoresController@show');
+Route::get('/nba_live_event_scores/Delete/{id}' ,'NbaLiveEventScoresController@destroy');
