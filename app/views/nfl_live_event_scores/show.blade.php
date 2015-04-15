@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/nfl_live_event_scores/show.blade.php

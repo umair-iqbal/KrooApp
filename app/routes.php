@@ -176,6 +176,8 @@ Route::get('/nhl_events/{id}' ,'NhlEventsController@show');
 Route::get('/nhl_events/Delete/{id}' ,'NhlEventsController@destroy');
 
 
+
+
 /*
  *  Mlb_live_events Routes
  */
@@ -252,3 +254,73 @@ Route::get('/nba_live_event_scores/Update/{sr_no}/{event_id}/{h_points}/{a_point
 Route::get('/nba_live_event_scores' ,'NbaLiveEventScoresController@index');
 Route::get('/nba_live_event_scores/{id}' ,'NbaLiveEventScoresController@show');
 Route::get('/nba_live_event_scores/Delete/{id}' ,'NbaLiveEventScoresController@destroy');
+
+
+
+/*
+ *  Nfl_event_scores Routes
+ */
+Route::get('/nfl_event_scores/Create/{event_id}/{quarter_no}/{h_points}/{a_points}/{h_yards}/{a_yards}/{h_pass_yards}/{a_pass_yards}/{h_rush_yards}/{a_rush_yards}/{h_total_turnovers}/{a_total_turnovers}/{h_first_downs}/{a_first_downs}/{h_kick_off}/{a_kick_off}/{h_punt_return}/{a_punt_return}/{h_total_touchdowns}/{a_total_touchdowns}/{h_field_goals_made}/{a_field_goals_made}/{h_total_fumbles_lost}/{a_total_fumbles_lost}/{h_total_interceptions}/{a_total_interceptions}/{created_on}/{last_updated_on}' ,'NflEventScoresController@store');
+Route::get('/nfl_event_scores/Update/{sr_no}/{event_id}/{quarter_no}/{h_points}/{a_points}/{h_yards}/{a_yards}/{h_pass_yards}/{a_pass_yards}/{h_rush_yards}/{a_rush_yards}/{h_total_turnovers}/{a_total_turnovers}/{h_first_downs}/{a_first_downs}/{h_kick_off}/{a_kick_off}/{h_punt_return}/{a_punt_return}/{h_total_touchdowns}/{a_total_touchdowns}/{h_field_goals_made}/{a_field_goals_made}/{h_total_fumbles_lost}/{a_total_fumbles_lost}/{h_total_interceptions}/{a_total_interceptions}/{created_on}/{last_updated_on}' ,'NflEventScoresController@edit');
+Route::get('/nfl_event_scores' ,'NflEventScoresController@index');
+Route::get('/nfl_event_scores/{id}' ,'NflEventScoresController@show');
+Route::get('/nfl_event_scores/Delete/{id}' ,'NflEventScoresController@destroy');
+
+
+/*
+ *  Nfl_live_event_scores Routes
+ */
+Route::get('/nfl_live_event_scores/Create/{event_id}/{quarter_no}/{h_points}/{a_points}/{h_yards}/{a_yards}/{h_pass_yards}/{a_pass_yards}/{h_rush_yards}/{a_rush_yards}/{h_total_turnovers}/{a_total_turnovers}/{h_first_downs}/{a_first_downs}/{h_kick_off}/{a_kick_off}/{h_punt_return}/{a_punt_return}/{h_total_touchdowns}/{a_total_touchdowns}/{h_field_goals_made}/{a_field_goals_made}/{h_total_fumbles_lost}/{a_total_fumbles_lost}/{h_total_interceptions}/{a_total_interceptions}/{created_on}/{last_updated_on}' ,'NflLiveEventScoresController@store');
+Route::get('/nfl_live_event_scores/Update/{sr_no}/{event_id}/{quarter_no}/{h_points}/{a_points}/{h_yards}/{a_yards}/{h_pass_yards}/{a_pass_yards}/{h_rush_yards}/{a_rush_yards}/{h_total_turnovers}/{a_total_turnovers}/{h_first_downs}/{a_first_downs}/{h_kick_off}/{a_kick_off}/{h_punt_return}/{a_punt_return}/{h_total_touchdowns}/{a_total_touchdowns}/{h_field_goals_made}/{a_field_goals_made}/{h_total_fumbles_lost}/{a_total_fumbles_lost}/{h_total_interceptions}/{a_total_interceptions}/{created_on}/{last_updated_on}' ,'NflLiveEventScoresController@edit');
+Route::get('/nfl_live_event_scores' ,'NflLiveEventScoresController@index');
+Route::get('/nfl_live_event_scores/{id}' ,'NflLiveEventScoresController@show');
+Route::get('/nfl_live_event_scores/Delete/{id}' ,'NflLiveEventScoresController@destroy');
+
+
+/*
+ *  Nhl_event_scores Routes
+ */
+Route::get('/nhl_event_scores/Create/{event_id}/{h_goals}/{a_goals}/{h_assists}/{a_assists}/{h_points}/{a_points}/{h_shot_on_goal}/{a_shot_on_goal}/{h_power_plays}/{a_power_plays}/{h_penalty_minutes}/{a_penalty_minutes}/{h_power_play_goals}/{a_power_play_goals}/{h_short_handed_goals}/{a_short_handed_goals}/{h_total_faceoffs}/{a_total_faceoffs}/{period_no}/{created_on}/{last_updated_on}' ,'NhlEventScoresController@store');
+Route::get('/nhl_event_scores/Update/{sr_no}/{event_id}/{h_goals}/{a_goals}/{h_assists}/{a_assists}/{h_points}/{a_points}/{h_shot_on_goal}/{a_shot_on_goal}/{h_power_plays}/{a_power_plays}/{h_penalty_minutes}/{a_penalty_minutes}/{h_power_play_goals}/{a_power_play_goals}/{h_short_handed_goals}/{a_short_handed_goals}/{h_total_faceoffs}/{a_total_faceoffs}/{period_no}/{created_on}/{last_updated_on}' ,'NhlEventScoresController@edit');
+Route::get('/nhl_event_scores' ,'NhlEventScoresController@index');
+Route::get('/nhl_event_scores/{id}' ,'NhlEventScoresController@show');
+Route::get('/nhl_event_scores/Delete/{id}' ,'NhlEventScoresController@destroy');
+
+
+/*
+ *  Nhl_live_event_scores Routes
+ */
+Route::get('/nhl_live_event_scores/Create/{event_id}/{h_goals}/{a_goals}/{h_assists}/{a_assists}/{h_points}/{a_points}/{h_shot_on_goal}/{a_shot_on_goal}/{h_power_plays}/{a_power_plays}/{h_penalty_minutes}/{a_penalty_minutes}/{h_power_play_goals}/{a_power_play_goals}/{h_short_handed_goals}/{a_short_handed_goals}/{h_total_faceoffs}/{a_total_faceoffs}/{period_no}/{created_on}/{last_updated_on}' ,'NhlLiveEventScoresController@store');
+Route::get('/nhl_live_event_scores/Update/{sr_no}/{event_id}/{h_goals}/{a_goals}/{h_assists}/{a_assists}/{h_points}/{a_points}/{h_shot_on_goal}/{a_shot_on_goal}/{h_power_plays}/{a_power_plays}/{h_penalty_minutes}/{a_penalty_minutes}/{h_power_play_goals}/{a_power_play_goals}/{h_short_handed_goals}/{a_short_handed_goals}/{h_total_faceoffs}/{a_total_faceoffs}/{period_no}/{created_on}/{last_updated_on}' ,'NhlLiveEventScoresController@edit');
+Route::get('/nhl_live_event_scores' ,'NhlLiveEventScoresController@index');
+Route::get('/nhl_live_event_scores/{id}' ,'NhlLiveEventScoresController@show');
+Route::get('/nhl_live_event_scores/Delete/{id}' ,'NhlLiveEventScoresController@destroy');
+
+
+/*
+ *  Notif_settings Routes
+ */
+Route::get('/notif_settings/Create/{notif_setting_id}/{notif_setting_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifSettingsController@store');
+Route::get('/notif_settings/Update/{notif_setting_id}/{notif_setting_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifSettingsController@edit');
+Route::get('/notif_settings' ,'NotifSettingsController@index');
+Route::get('/notif_settings/{id}' ,'NotifSettingsController@show');
+Route::get('/notif_settings/Delete/{id}' ,'NotifSettingsController@destroy');
+
+
+/*
+ *  Notif_type Routes
+ */
+Route::get('/notif_type/Create/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifTypesController@store');
+Route::get('/notif_type/Update/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifTypesController@edit');
+Route::get('/notif_type' ,'NotifTypesController@index');
+Route::get('/notif_type/{id}' ,'NotifTypesController@show');
+Route::get('/notif_type/Delete/{id}' ,'NotifTypesController@destroy');
+
+/*
+ *  Role_tasks Routes
+ */
+Route::get('/role_tasks/Create/{role_id}/{task_id}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}/{is_allowed}/{is_insert_allowed}/{is_update_allowed}/{is_select_allowed}/{is_delete_allowed}' ,'RoleTasksController@store');
+Route::get('/role_tasks/Update/{sr_no}/{role_id}/{task_id}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}/{is_allowed}/{is_insert_allowed}/{is_update_allowed}/{is_select_allowed}/{is_delete_allowed}' ,'RoleTasksController@edit');
+Route::get('/role_tasks' ,'RoleTasksController@index');
+Route::get('/role_tasks/{id}' ,'RoleTasksController@show');
+Route::get('/role_tasks/Delete/{id}' ,'RoleTasksController@destroy');

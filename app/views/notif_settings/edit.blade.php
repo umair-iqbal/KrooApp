@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/notif_settings/edit.blade.php
