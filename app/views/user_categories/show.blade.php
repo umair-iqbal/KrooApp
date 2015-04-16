@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/user_categories/show.blade.php

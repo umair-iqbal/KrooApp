@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/teams/show.blade.php

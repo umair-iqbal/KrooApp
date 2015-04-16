@@ -324,3 +324,139 @@ Route::get('/role_tasks/Update/{sr_no}/{role_id}/{task_id}/{is_active}/{created_
 Route::get('/role_tasks' ,'RoleTasksController@index');
 Route::get('/role_tasks/{id}' ,'RoleTasksController@show');
 Route::get('/role_tasks/Delete/{id}' ,'RoleTasksController@destroy');
+
+
+/*
+ *  Social_networks Routes
+ */
+Route::get('/social_networks/Create/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'SocialNetworksController@store');
+Route::get('/social_networks/Update/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'SocialNetworksController@edit');
+Route::get('/social_networks' ,'SocialNetworksController@index');
+Route::get('/social_networks/{id}' ,'SocialNetworksController@show');
+Route::get('/social_networks/Delete/{id}' ,'SocialNetworksController@destroy');
+
+
+/*
+ *  System_parameters Routes
+ */
+Route::get('/system_parameters/Create/{param_id}/{param_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'SystemParametersController@store');
+Route::get('/system_parameters/Update/{param_id}/{param_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'SystemParametersController@edit');
+Route::get('/system_parameters' ,'SystemParametersController@index');
+Route::get('/system_parameters/{id}' ,'SystemParametersController@show');
+Route::get('/system_parameters/Delete/{id}' ,'SystemParametersController@destroy');
+
+/*
+ *  Teams Routes
+ */
+Route::get('/teams/Create/{team_id}/{league_id}/{api_team_id}/{is_active}/{is_pass_changed}/{created_on}/{last_login_date}/{last_updated_on}/{team_password}' ,'TeamsController@store');
+Route::get('/teams/Update/{team_id}/{league_id}/{api_team_id}/{is_active}/{is_pass_changed}/{created_on}/{last_login_date}/{last_updated_on}/{team_password}' ,'TeamsController@edit');
+Route::get('/teams' ,'TeamsController@index');
+Route::get('/teams/{id}' ,'TeamsController@show');
+Route::get('/teams/Delete/{id}' ,'TeamsController@destroy');
+
+/*
+ *  User_Avatars Routes
+ */
+Route::get('/user_avatars/Create/{user_id}/{user_avatar}/{is_active}/{is_current_avatar}/{created_on}/{last_updated_on}/{user_avatarscol}' ,'UserAvatarsController@store');
+Route::get('/user_avatars/Update/{sr_no}/{user_id}/{user_avatar}/{is_active}/{is_current_avatar}/{created_on}/{last_updated_on}/{user_avatarscol}' ,'UserAvatarsController@edit');
+Route::get('/user_avatars' ,'UserAvatarsController@index');
+Route::get('/user_avatars/{id}' ,'UserAvatarsController@show');
+Route::get('/user_avatars/Delete/{id}' ,'UserAvatarsController@destroy');
+
+
+/*
+ *  User_categories Routes
+ */
+Route::get('/user_categories/Create/{user_category}/{category_name}/{is_active}/{created_on}' ,'UserCategoriesController@store');
+Route::get('/user_categories/Update/{sr_no}/{user_category}/{category_name}/{is_active}/{created_on}' ,'UserCategoriesController@edit');
+Route::get('/user_categories' ,'UserCategoriesController@index');
+Route::get('/user_categories/{id}' ,'UserCategoriesController@show');
+Route::get('/user_categories/Delete/{id}' ,'UserCategoriesController@destroy');
+
+/*
+ *  User_event_rewards Routes
+ */
+Route::get('/user_event_rewards/Create/{user_id}/{event_id}/{game_level}/{user_rank}/{live_points}/{last_updated_on}' ,'UserEventRewardsController@store');
+Route::get('/user_event_rewards/Update/{sr_no}/{user_id}/{event_id}/{game_level}/{user_rank}/{live_points}/{last_updated_on}' ,'UserEventRewardsController@edit');
+Route::get('/user_event_rewards' ,'UserEventRewardsController@index');
+Route::get('/user_event_rewards/{id}' ,'UserEventRewardsController@show');
+Route::get('/user_event_rewards/Delete/{id}' ,'UserEventRewardsController@destroy');
+
+
+/*
+ *  User_events Routes
+ */
+Route::get('/user_events/Create/{user_id}/{event_id}/{is_active}/{is_attended}/{is_played}/{created_on}/{last_updated_on}' ,'UserEventsController@store');
+Route::get('/user_events/Update/{sr_no}/{user_id}/{event_id}/{is_active}/{is_attended}/{is_played}/{created_on}/{last_updated_on}' ,'UserEventsController@edit');
+Route::get('/user_events' ,'UserEventsController@index');
+Route::get('/user_events/{id}' ,'UserEventsController@show');
+Route::get('/user_events/Delete/{id}' ,'UserEventsController@destroy');
+
+
+/*
+ *  User_followers Routes
+ */
+Route::get('/user_followers/Create/{user_id}/{follower_id}/{followed_on}/{is_active}/{last_updated_on}' ,'UserFollowersController@store');
+Route::get('/user_followers/Update/{sr_no}/{user_id}/{follower_id}/{followed_on}/{is_active}/{last_updated_on}' ,'UserFollowersController@edit');
+Route::get('/user_followers' ,'UserFollowersController@index');
+Route::get('/user_followers/{id}' ,'UserFollowersController@show');
+Route::get('/user_followers/Delete/{id}' ,'UserFollowersController@destroy');
+
+/*
+ *  User_notif_settings Routes
+ */
+Route::get('/user_notif_settings/Create/{user_id}/{notif_setting_id}/{is_active}' ,'UserNotifSettingsController@store');
+Route::get('/user_notif_settings/Update/{sr_no}/{user_id}/{notif_setting_id}/{is_active}' ,'UserNotifSettingsController@edit');
+Route::get('/user_notif_settings' ,'UserNotifSettingsController@index');
+Route::get('/user_notif_settings/{id}' ,'UserNotifSettingsController@show');
+Route::get('/user_notif_settings/Delete/{id}' ,'UserNotifSettingsController@destroy');
+
+
+/*
+ *  User_notification Routes
+ */
+Route::get('/user_notification/Create/{user_id}/{notif_type_id}/{notif_key}/{is_active}/{created_on}/{user_notificationcol}' ,'UserNotificationsController@store');
+Route::get('/user_notification/Update/{sr_no}/{user_id}/{notif_type_id}/{notif_key}/{is_active}/{created_on}/{user_notificationcol}' ,'UserNotificationsController@edit');
+Route::get('/user_notification' ,'UserNotificationsController@index');
+Route::get('/user_notification/{id}' ,'UserNotificationsController@show');
+Route::get('/user_notification/Delete/{id}' ,'UserNotificationsController@destroy');
+
+
+/*
+ *  User_profiles Routes
+ */
+Route::get('/user_profiles/Create/{user_id}/{full_name}/{phone_no}/{dob}/{country}/{gender}/{is_active}/{created_on}/{last_updated_on}' ,'UserProfilesController@store');
+Route::get('/user_profiles/Update/{sr_no}/{user_id}/{full_name}/{phone_no}/{dob}/{country}/{gender}/{is_active}/{created_on}/{last_updated_on}' ,'UserProfilesController@edit');
+Route::get('/user_profiles' ,'UserProfilesController@index');
+Route::get('/user_profiles/{id}' ,'UserProfilesController@show');
+Route::get('/user_profiles/Delete/{id}' ,'UserProfilesController@destroy');
+
+
+/*
+ *  User_question_option Routes
+ */
+Route::get('/user_question_option/Create/{user_id}/{option_id}/{event_id}/{event_level}/selected_on}/{is_selection_correct}' ,'UserQuestionOptionsController@store');
+Route::get('/user_question_option/Update/{sr_no}/{user_id}/{option_id}/{event_id}/{event_level}/selected_on}/{is_selection_correct}' ,'UserQuestionOptionsController@edit');
+Route::get('/user_question_option' ,'UserQuestionOptionsController@index');
+Route::get('/user_question_option/{id}' ,'UserQuestionOptionsController@show');
+Route::get('/user_question_option/Delete/{id}' ,'UserQuestionOptionsController@destroy');
+
+
+/*
+ *  User_socail_networks Routes
+ */
+Route::get('/user_socail_networks/Create/{user_id}/{social_net_id}/{is_active}/{last_updated_on}/{is_notif_allowed}' ,'UserSocialNetworksController@store');
+Route::get('/user_socail_networks/Update/{sr_no}/{user_id}/{social_net_id}/{is_active}/{last_updated_on}/{is_notif_allowed}' ,'UserSocialNetworksController@edit');
+Route::get('/user_socail_networks' ,'UserSocialNetworksController@index');
+Route::get('/user_socail_networks/{id}' ,'UserSocialNetworksController@show');
+Route::get('/user_socail_networks/Delete/{id}' ,'UserSocialNetworksController@destroy');
+
+
+/*
+*  User_teams Routes
+*/
+Route::get('/user_teams/Create/{user_id}/{team_id}/{is_active}/{created_on}/{last_updated_on}' ,'UserTeamsController@store');
+Route::get('/user_teams/Update/{sr_no}/{user_id}/{team_id}/{is_active}/{created_on}/{last_updated_on}' ,'UserTeamsController@edit');
+Route::get('/user_teams' ,'UserTeamsController@index');
+Route::get('/user_teams/{id}' ,'UserTeamsController@show');
+Route::get('/user_teams/Delete/{id}' ,'UserTeamsController@destroy');

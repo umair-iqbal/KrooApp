@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/user_event_rewards/show.blade.php

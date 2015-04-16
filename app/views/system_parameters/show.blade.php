@@ -1,0 +1,1 @@
+C:\xampp\htdocs\KrooApp\app/views/system_parameters/show.blade.php
