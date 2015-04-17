@@ -48,7 +48,7 @@ class TeamsController extends \BaseController {
 
         //$user->save();
         DB::table('teams')
-            ->insert(array('team_id'=> $team_id,'$league_id'=>$league_id,'api_team_id'=>$api_team_id,'is_active'=>$is_active,'is_pass_changed'=>$is_pass_changed,'created_on'=>$created_on,'last_login_date'=>$last_login_date,'last_updated_on'=>$last_updated_on,
+            ->insert(array('team_id'=> $team_id,'league_id'=>$league_id,'api_team_id'=>$api_team_id,'is_active'=>$is_active,'is_pass_changed'=>$is_pass_changed,'created_on'=>$created_on,'last_login_date'=>$last_login_date,'last_updated_on'=>$last_updated_on,
                 'team_password'=>$team_password));
 
         $role = DB::table('teams')->where('team_id', $team_id)->first();
@@ -94,7 +94,7 @@ class TeamsController extends \BaseController {
         //$user->save();
         DB::table('teams')
             ->where('team_id',$team_id)
-            ->update(array('team_id'=> $team_id,'$league_id'=>$league_id,'api_team_id'=>$api_team_id,'is_active'=>$is_active,'is_pass_changed'=>$is_pass_changed,'created_on'=>$created_on,'last_login_date'=>$last_login_date,'last_updated_on'=>$last_updated_on,
+            ->update(array('team_id'=> $team_id,'league_id'=>$league_id,'api_team_id'=>$api_team_id,'is_active'=>$is_active,'is_pass_changed'=>$is_pass_changed,'created_on'=>$created_on,'last_login_date'=>$last_login_date,'last_updated_on'=>$last_updated_on,
                 'team_password'=>$team_password));
 
         $role = DB::table('teams')->where('team_id', $team_id)->first();

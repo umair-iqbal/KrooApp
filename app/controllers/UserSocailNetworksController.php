@@ -12,7 +12,7 @@ class UserSocailNetworksController extends \BaseController {
 	{
 		$usersocailnetworks = Usersocailnetwork::all();
 
-        return View::make('user_socail_networks.index',array("data"=> json_encode($userprofiles)));
+        return View::make('user_socail_networks.index',array("data"=> json_encode($usersocailnetworks)));
 	}
 
 	/**

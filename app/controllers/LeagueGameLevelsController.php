@@ -41,9 +41,9 @@ class LeagueGameLevelsController extends \BaseController {
 
         //$user->save();
         DB::table('league_game_levels')
-            ->insert(array('league_id'=> $leagueID,'level_no'=>$level_no,'level_descc'=>$level_desc,'is_active'=>$is_active,'created_on'=>$created_on));
+            ->insert(array('league_id'=> $leagueID,'level_no'=>$level_no,'level_desc'=>$level_desc,'is_active'=>$is_active,'created_on'=>$created_on));
 
-        $league = DB::table('League_game_levels')->where('league_id', $leagueID)->first();
+        $league = DB::table('league_game_levels')->where('league_id', $leagueID)->first();
         return View::make("League_game_levels/Create.index",array("data"=> json_encode($league)));
     }
 	/**
@@ -75,7 +75,7 @@ class LeagueGameLevelsController extends \BaseController {
         //$user->save();
         DB::table('league_game_levels')
             ->where('sr_no',$sr_no)
-            ->update(array('league_id'=> $leagueID,'level_no'=>$level_no,'level_descc'=>$level_desc,'is_active'=>$is_active,'created_on'=>$created_on));
+            ->update(array('league_id'=> $leagueID,'level_no'=>$level_no,'level_desc'=>$level_desc,'is_active'=>$is_active,'created_on'=>$created_on));
 
         $league = DB::table('league_game_levels')->where('sr_no', $sr_no)->first();
         return View::make("League_game_levels/Create.index",array("data"=> json_encode($league)));

@@ -11,8 +11,7 @@ class UserEventRewardsController extends \BaseController {
 	public function index()
 	{
 		$usereventrewards = Usereventreward::all();
-
-		return View::make('usereventrewards.index', compact('usereventrewards'));
+        return View::make('user_event_rewards.index',array("data"=> json_encode($usereventrewards)));
 	}
 
 	/**

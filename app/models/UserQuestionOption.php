@@ -7,7 +7,7 @@ class UserQuestionOption extends \Eloquent {
      *
      * @var string
      */
-    protected $table = 'user_question_option';
+    protected $table = 'user_question_options';
 
 
 

@@ -79,7 +79,7 @@ class TeamAvatarsController extends \BaseController {
         }
 
         DB::table('team_avatars')
-            ->where('s_no',$sr_no)
+            ->where('sr_no',$sr_no)
             ->update(array('team_id'=> $teamID,'avatar_id'=>$avatar_id,'is_current_avatar'=>$is_current_avatar,'is_active'=>$is_active,'created_on'=>$created_on,
                 'last_updated_on'=>$last_updated_on));
 

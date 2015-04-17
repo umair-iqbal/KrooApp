@@ -12,7 +12,7 @@ class UserNotificationsController extends \BaseController {
 	{
 		$usernotifications = Usernotification::all();
 
-        return View::make('user_notification.index',array("data"=> json_encode($usernotifications)));
+        return View::make('user_notifications.index',array("data"=> json_encode($usernotifications)));
 	}
 
 	/**
@@ -43,7 +43,7 @@ class UserNotificationsController extends \BaseController {
             ));
 
         $role = DB::table('user_notification')->where('user_id', $user_id)->first();
-        return View::make("user_notification/Create.index",array("data"=> json_encode($role)));
+        return View::make("user_notifications/Create.index",array("data"=> json_encode($role)));
     }
 
 	/**
@@ -56,7 +56,7 @@ class UserNotificationsController extends \BaseController {
 	{
         $role = DB::table('user_notification')->where('sr_no', $id)->first();
 
-        return View::make('user_notification.index', array("data"=> json_encode($role)));
+        return View::make('user_notifications.index', array("data"=> json_encode($role)));
 	}
 
 	/**
@@ -79,7 +79,7 @@ class UserNotificationsController extends \BaseController {
             ));
 
         $role = DB::table('user_notification')->where('sr_no', $sr_no)->first();
-        return View::make("user_notification/Create.index",array("data"=> json_encode($role)));
+        return View::make("user_notifications/Create.index",array("data"=> json_encode($role)));
     }
 
 	/**
@@ -117,12 +117,12 @@ class UserNotificationsController extends \BaseController {
             DB::table('user_notification')->where('sr_no', $id)->delete();
             $role = DB::table('user_notification')->where('sr_no', $id)->first();
             if ($role == null)
-                return View::make('user_notification/Delete.index', array("data" => '1'));
+                return View::make('user_notifications/Delete.index', array("data" => '1'));
             else
-                return View::make('user_notification/Delete.index', array("data" => '0'));
+                return View::make('user_notifications/Delete.index', array("data" => '0'));
         }
         else
-            return View::make('user_notification/Delete.index', array("data" => '0'));
+            return View::make('user_notifications/Delete.index', array("data" => '0'));
 
     }
 

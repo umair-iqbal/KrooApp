@@ -12,7 +12,7 @@ class NotifTypesController extends \BaseController {
 	{
 		$notiftypes = Notiftype::all();
 
-        return View::make('notif_type.index',array("data"=> json_encode($notiftypes)));
+        return View::make('notif_types.index',array("data"=> json_encode($notiftypes)));
 	}
 
 	/**
@@ -48,7 +48,7 @@ class NotifTypesController extends \BaseController {
                 'last_updated_by'=>$last_updated_by));
 
         $role = DB::table('notif_type')->where('notif_type_id', $notif_type_id)->first();
-        return View::make("notif_type/Create.index",array("data"=> json_encode($role)));
+        return View::make("notif_types/Create.index",array("data"=> json_encode($role)));
     }
 
 	/**
@@ -61,7 +61,7 @@ class NotifTypesController extends \BaseController {
 	{
         $role = DB::table('notif_type')->where('notif_type_id', $id)->first();
 
-        return View::make('notif_type.index', array("data"=> json_encode($role)));
+        return View::make('notif_types.index', array("data"=> json_encode($role)));
 	}
 
 	/**
@@ -89,7 +89,7 @@ class NotifTypesController extends \BaseController {
                 'last_updated_by'=>$last_updated_by));
 
         $role = DB::table('notif_type')->where('notif_type_id', $notif_type_id)->first();
-        return View::make("notif_type/Create.index",array("data"=> json_encode($role)));
+        return View::make("notif_types/Create.index",array("data"=> json_encode($role)));
     }
 	/**
 	 * Update the specified notiftype in storage.
@@ -126,12 +126,12 @@ class NotifTypesController extends \BaseController {
             DB::table('notif_type')->where('notif_type_id', $id)->delete();
             $role = DB::table('notif_type')->where('notif_type_id', $id)->first();
             if ($role == null)
-                return View::make('notif_type/Delete.index', array("data" => '1'));
+                return View::make('notif_types/Delete.index', array("data" => '1'));
             else
-                return View::make('notif_type/Delete.index', array("data" => '0'));
+                return View::make('notif_types/Delete.index', array("data" => '0'));
         }
         else
-            return View::make('notif_type/Delete.index', array("data" => '0'));
+            return View::make('notif_types/Delete.index', array("data" => '0'));
 
     }
 }

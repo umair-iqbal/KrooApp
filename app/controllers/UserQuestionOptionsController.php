@@ -12,7 +12,7 @@ class UserQuestionOptionsController extends \BaseController {
 	{
 		$userquestionoptions = Userquestionoption::all();
 
-        return View::make('user_question_option.index',array("data"=> json_encode($userquestionoptions)));
+        return View::make('user_question_options.index',array("data"=> json_encode($userquestionoptions)));
 	}
 
 	/**
@@ -40,8 +40,8 @@ class UserQuestionOptionsController extends \BaseController {
         DB::table('user_question_option')
             ->insert(array('user_id'=> $user_id,'option_id'=>$option_id,'event_id'=>$event_id,'event_level'=>$event_level,'selected_on'=>$selected_on,'is_selection_correct'=>$is_selection_correct));
 
-        $role = DB::table('user_question_option')->where('user_id', $user_id)->first();
-        return View::make("user_question_option/Create.index",array("data"=> json_encode($role)));
+        $role = DB::table('user_question_options')->where('user_id', $user_id)->first();
+        return View::make("user_question_options/Create.index",array("data"=> json_encode($role)));
     }
 
 
@@ -54,9 +54,9 @@ class UserQuestionOptionsController extends \BaseController {
 	public function show($id)
 	{
 
-        $role = DB::table('user_question_option')->where('sr_no', $id)->first();
+        $role = DB::table('user_question_options')->where('sr_no', $id)->first();
 
-        return View::make('user_question_option.index', array("data"=> json_encode($role)));
+        return View::make('user_question_options.index', array("data"=> json_encode($role)));
 	}
 
 	/**
@@ -72,12 +72,12 @@ class UserQuestionOptionsController extends \BaseController {
             $selected_on =new DateTime($selected_on);
         }
 
-        DB::table('user_question_option')
+        DB::table('user_question_options')
             ->where('sr_no',$sr_no)
             ->update(array('user_id'=> $user_id,'option_id'=>$option_id,'event_id'=>$event_id,'event_level'=>$event_level,'selected_on'=>$selected_on,'is_selection_correct'=>$is_selection_correct));
 
-        $role = DB::table('user_question_option')->where('sr_no', $sr_no)->first();
-        return View::make("user_question_option/Create.index",array("data"=> json_encode($role)));
+        $role = DB::table('user_question_options')->where('sr_no', $sr_no)->first();
+        return View::make("user_question_options/Create.index",array("data"=> json_encode($role)));
     }
 
 	/**
@@ -111,17 +111,17 @@ class UserQuestionOptionsController extends \BaseController {
 	
    public function destroy($id)
    {
-       $role = DB::table('user_question_option')->where('sr_no', $id)->first();
+       $role = DB::table('user_question_options')->where('sr_no', $id)->first();
        if($role!=null) {
-           DB::table('user_question_option')->where('sr_no', $id)->delete();
-           $role = DB::table('user_question_option')->where('sr_no', $id)->first();
+           DB::table('user_question_options')->where('sr_no', $id)->delete();
+           $role = DB::table('user_question_options')->where('sr_no', $id)->first();
            if ($role == null)
-               return View::make('user_question_option/Delete.index', array("data" => '1'));
+               return View::make('user_question_options/Delete.index', array("data" => '1'));
            else
-               return View::make('user_question_option/Delete.index', array("data" => '0'));
+               return View::make('user_question_options/Delete.index', array("data" => '0'));
        }
        else
-           return View::make('user_question_option/Delete.index', array("data" => '0'));
+           return View::make('user_question_options/Delete.index', array("data" => '0'));
 
    }
 

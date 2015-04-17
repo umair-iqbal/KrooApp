@@ -11,12 +11,10 @@
 |
 */
 
+
 Route::get('/', function()
 {
-
-    $users = DB::table('user')->get();
-    return $users;
-	return View::make('hello');
+    return 'Hello World';
 });
 
 Route::get('/AppUser/{name}/{password}/{email}' ,'AppController@SignUp');
@@ -310,11 +308,11 @@ Route::get('/notif_settings/Delete/{id}' ,'NotifSettingsController@destroy');
 /*
  *  Notif_type Routes
  */
-Route::get('/notif_type/Create/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifTypesController@store');
-Route::get('/notif_type/Update/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifTypesController@edit');
-Route::get('/notif_type' ,'NotifTypesController@index');
-Route::get('/notif_type/{id}' ,'NotifTypesController@show');
-Route::get('/notif_type/Delete/{id}' ,'NotifTypesController@destroy');
+Route::get('/notif_types/Create/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifTypesController@store');
+Route::get('/notif_types/Update/{notif_type_id}/{notif_type_desc}/{is_active}/{created_on}/{created_by}/{last_updated_on}/{last_updated_by}' ,'NotifTypesController@edit');
+Route::get('/notif_types' ,'NotifTypesController@index');
+Route::get('/notif_types/{id}' ,'NotifTypesController@show');
+Route::get('/notif_types/Delete/{id}' ,'NotifTypesController@destroy');
 
 /*
  *  Role_tasks Routes
@@ -445,11 +443,11 @@ Route::get('/user_question_option/Delete/{id}' ,'UserQuestionOptionsController@d
 /*
  *  User_socail_networks Routes
  */
-Route::get('/user_socail_networks/Create/{user_id}/{social_net_id}/{is_active}/{last_updated_on}/{is_notif_allowed}' ,'UserSocialNetworksController@store');
-Route::get('/user_socail_networks/Update/{sr_no}/{user_id}/{social_net_id}/{is_active}/{last_updated_on}/{is_notif_allowed}' ,'UserSocialNetworksController@edit');
-Route::get('/user_socail_networks' ,'UserSocialNetworksController@index');
-Route::get('/user_socail_networks/{id}' ,'UserSocialNetworksController@show');
-Route::get('/user_socail_networks/Delete/{id}' ,'UserSocialNetworksController@destroy');
+Route::get('/user_socail_networks/Create/{user_id}/{social_net_id}/{is_active}/{last_updated_on}/{is_notif_allowed}' ,'UserSocailNetworksController@store');
+Route::get('/user_socail_networks/Update/{sr_no}/{user_id}/{social_net_id}/{is_active}/{last_updated_on}/{is_notif_allowed}' ,'UserSocailNetworksController@edit');
+Route::get('/user_socail_networks' ,'UserSocailNetworksController@index');
+Route::get('/user_socail_networks/{id}' ,'UserSocailNetworksController@show');
+Route::get('/user_socail_networks/Delete/{id}' ,'UserSocailNetworksController@destroy');
 
 
 /*
