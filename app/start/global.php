@@ -21,12 +21,12 @@ ClassLoader::addDirectories(array(
 ));
 
 
-App::missing(function($e)
-{
-    $url = Request::fullUrl();
-    Log::warning("404 for URL: $url");
-    return Response::make('404 not found', 404);
-});
+//App::missing(function($e)
+//{
+//    $url = Request::fullUrl();
+//    Log::warning("404 for URL: $url");
+//    return Response::make('404 not found', 404);
+//});
 
 /*
 |--------------------------------------------------------------------------

@@ -16,66 +16,56 @@ class UsersController extends \BaseController {
 	}
 
 
-    public function SignUp($userID,$user_category,$role_id,$password,$is_active,$is_pass_changed,$is_thirdparty_user,$potential_points,$global_rank,$created_on,$last_login_date,$last_updated_on)
+    /**
+     * @param $signUpType
+     * @param $data
+     * @return mixed
+     */
+    public function SignUp($signUpType,$data)
     {
-        $user = new User();
-        if($created_on!="")
+        $signUpType = strtoupper($signUpType);
+        $data = json_decode($data,true);
+        if($signUpType=='K')
         {
-            $created_on =new DateTime($created_on);
-        }
-        if($last_updated_on!="")
-        {
-            $last_updated_on =new DateTime($last_updated_on);
-        }
-        if($last_login_date!="")
-        {
-            $last_login_date =new DateTime($last_login_date);
-        }
-        $user->user_id=$userID ;
-        $user->user_category = $user_category;
-        $user->user_password=$password;
-        $user->potential_points = $potential_points;
-        $user->global_rank= $global_rank;
-        $user->role_id = $role_id;
-        $user->is_active = $is_active;
-        $user->is_pass_changed = $is_pass_changed;
-        $user->is_thirdparty_user = $is_thirdparty_user;
-        $user->created_on = $created_on;
-        $user->last_login_date = $last_login_date;
-        $user->last_updated_on = $last_updated_on;
-        $user->save();
-        //return View::make('hello');
 
-        return View::make("Users/Create.show",array("data"=> json_encode($user)));
+           $user = User::where('user_id',$data['user_id'])->first();
+            if($user!=null)
+            {
+                if(strtoupper($user->is_kroo_signup)=='N'){
+
+                    edit($data);
+                }
+                else {
+                    return View::make('users.index', array("data" => 'user already exist'));
+                }
+            }
+            else
+            {
+                $u =  new User($data);
+                $u->save();
+                return View::make("Users/Create.show",array("data"=> json_encode($u)));
+            }
+        }
+        else if($signUpType=='S')
+        {
+            $user = User::where('user_id',$data['user_id'])->first();
+            if($user!=null)
+            {
+                $user = User::where('user_id',$data['user_id'])->update($data);
+                return View::make("Users/Create.show",array("data"=> json_encode($data)));
+            }
+            else
+            {
+
+                $u =  new User($data);
+                $u->save();
+                return View::make("Users/Create.show",array("data"=> json_encode($u)));
+            }
+
+        }
+
     }
-	/**
-	 * Show the form for creating a new user
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('users.create');
-	}
 
-	/**
-	 * Create a newly created user in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$validator = Validator::make($data = Input::all(), User::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		User::create($data);
-
-		return Redirect::route('users.index');
-	}
 
 	/**
 	 * Display the specified user.
@@ -90,61 +80,20 @@ class UsersController extends \BaseController {
 		return View::make('users.index', array("data"=> json_encode($user)));
 	}
 
-	/**
-	 * Show the form for editing the specified user.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($userID,$user_category,$role_id,$password,$is_active,$is_pass_changed,$is_thirdparty_user,$potential_points,$global_rank,$created_on,$last_login_date,$last_updated_on)
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function edit($data)
 	{
 
-
-        if($created_on!="")
-        {
-            $created_on =new DateTime($created_on);
-        }
-        if($last_updated_on!="")
-        {
-            $last_updated_on =new DateTime($last_updated_on);
-        }
-        if($last_login_date!="")
-        {
-            $last_login_date =new DateTime($last_login_date);
-        }
-
-        //$user->save();
-        DB::table('users')
-            ->where('user_id', $userID)
-            ->update(array('user_category' =>$user_category,'role_id'=>$role_id,'user_password'=>$password,'potential_points'=>$potential_points,'global_rank'=>$global_rank,
-                'is_active'=>$is_active,'is_pass_changed'=>$is_pass_changed,'is_thirdparty_user'=>$is_thirdparty_user,'created_on'=>$created_on,'last_login_date'=>$last_login_date,
-                 'last_updated_on'=>$last_updated_on));
-
-        $user = DB::table('users')->where('user_id', $userID)->first();
-        return View::make("Users/Update.show",array("data"=> json_encode($user)));
+        $dd = json_decode($data,true);
+        $user = User::where('user_id',$dd['user_id'])->update($dd);
+        return View::make("Users/Update.show",array("data"=> json_encode($dd)));
 	}
 
-	/**
-	 * Update the specified user in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$user = User::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), User::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		$user->update($data);
-
-		return Redirect::route('users.index');
-	}
 
 	/**
 	 * Remove the specified user from storage.

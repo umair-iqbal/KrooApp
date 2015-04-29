@@ -9,12 +9,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
+    /**
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = array())
+    {
+        $this->bootIfNotBooted();
+        $this->syncOriginal();
+        $this->fill($attributes);
+    }
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
 	protected $table = 'users';
+    public $primaryKey  = 'user_id';
+
+    /**
+     * @param array $attributes
+     */
+
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -30,7 +45,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public  $timestamps = false;
     protected $fillable = array('user_id', 'user_category','role_id','user_password','is_active','is_pass_changed',
-                               'is_thirdparty_user','potential_points','global_rank','created_on','last_login_date',
+                               'is_kroo_signup','potential_points','global_rank','created_on','last_login_date',
                                 'last_updated_on');
 
 }

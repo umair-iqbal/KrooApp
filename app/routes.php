@@ -16,14 +16,16 @@ Route::get('/', function()
 {
     return 'Hello World';
 });
+Route::get('/AppUser1/{data}' ,'AppController@show');
+Route::get('/AppUserUp/{data}' ,'AppController@update');
 
 Route::get('/AppUser/{name}/{password}/{email}' ,'AppController@SignUp');
 
 /*
  *   Users Routes
  */
-Route::get('/Users/Create/{userID}/{user_category}/{role_id}/{password}/{is_active}/{is_pass_changed}/{is_thirdparty_user}/{potential_points}/{global_rank}/{created_on}/{last_login_date}/{last_updated_on}' ,'UsersController@SignUp');
-Route::get('/Users/Update/{userID}/{user_category}/{role_id}/{password}/{is_active}/{is_pass_changed}/{is_thirdparty_user}/{potential_points}/{global_rank}/{created_on}/{last_login_date}/{last_updated_on}' ,'UsersController@edit');
+Route::get('/Users/Create/{signUpType}/{data}' ,'UsersController@SignUp');
+Route::get('/Users/Update/{data}' ,'UsersController@edit');
 Route::get('/Users' ,'UsersController@index');
 Route::get('/Users/{id}' ,'UsersController@show');
 Route::get('/Users/Delete/{id}' ,'UsersController@destroy');
