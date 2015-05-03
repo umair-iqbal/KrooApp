@@ -11,6 +11,8 @@
 |
 */
 
+
+
 ClassLoader::addDirectories(array(
 
 	app_path().'/commands',
@@ -21,12 +23,81 @@ ClassLoader::addDirectories(array(
 ));
 
 
-//App::missing(function($e)
-//{
-//    $url = Request::fullUrl();
-//    Log::warning("404 for URL: $url");
-//    return Response::make('404 not found', 404);
-//});
+App::missing(function($e)
+{
+    $url = Request::fullUrl();
+    Log::warning("404 for URL: $url");
+    return Response::make('404 not found', 404);
+});
+
+App::error(function(PDOException $e)
+{
+    Log::error($e);
+    $code = $e->getCode();
+//var_dump($e,$cod);
+    //return $code;
+        switch ($code) {
+        case 23000:
+            return 'Database error! ' .'Code :' . $e->getCode().' Message : Integrity constant violation';
+
+        case '42S22':
+            return 'Database error! ' .'Code :' . $e->getCode().' Message : Unknown column';
+
+        case 404:
+            return $code;
+
+        case 500:
+            return $code;
+
+    }
+
+});
+
+App::error(function(Exception $exception,$code) {
+
+    if($code==404)
+    {
+        $Newcode = 404;
+    }
+    else
+    {
+        $Newcode = $exception->getCode();
+    }
+     $code = $exception->getCode();
+    if($Newcode!=0) {
+        switch ($Newcode) {
+            case 23000:
+                return 'Database error! ' . ' Code :' . $exception->getCode() . ' Message : Integrity constraint violation';
+
+            case '42S22':
+                return 'Database error! ' . 'Code :' . $exception->getCode() . ' Message : Unknown column';
+
+            case 404:
+                return 'Error ' . 'Code :' . $Newcode . ' Message : Page not found';
+
+            case 500:
+                return $code;
+
+        }
+    }
+    else{
+        // var_dump($exception);
+//    echo '<pre>';
+    echo 'MESSAGE :: ';
+        print_r($exception->getMessage());
+    echo '<br> CODE ::';
+    print_r($exception->getCode());
+      //  $code = $exception->getCode();
+//    //print_r($code);
+//    echo '<br> FILE NAME ::';
+//    print_r($exception->getFile());
+//
+//    echo '<br> LINE NUMBER ::';
+//    print_r($exception->getLine());
+
+    }
+     die();// if you want than only
+});
 
 /*
 |--------------------------------------------------------------------------

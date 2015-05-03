@@ -21,8 +21,10 @@ class UsersController extends \BaseController {
      * @param $data
      * @return mixed
      */
-    public function SignUp($signUpType,$data)
+
+    public function SignUp($signUpType,$data,$name)
     {
+        $userP = new UserProfile();
         $signUpType = strtoupper($signUpType);
         $data = json_decode($data,true);
         if($signUpType=='K')
@@ -33,7 +35,13 @@ class UsersController extends \BaseController {
             {
                 if(strtoupper($user->is_kroo_signup)=='N'){
 
-                    edit($data);
+                    $user = User::where('user_id',$data['user_id'])->update($data);
+
+                    DB::table('user_profiles')
+                        ->where('user_id',$data['user_id'])
+                        ->update(array('user_id'=>$data['user_id'],'full_name'=>$name,'is_active'=>'Y','created_on'=>$data['created_on']));
+
+
                 }
                 else {
                     return View::make('users.index', array("data" => 'user already exist'));
@@ -43,6 +51,11 @@ class UsersController extends \BaseController {
             {
                 $u =  new User($data);
                 $u->save();
+                $userP->user_id = $data['user_id'];
+                $userP->full_name = $name;
+                $userP->is_active = 'Y';
+                $userP->created_on = $data['created_on'];
+                $userP->save();
                 return View::make("Users/Create.show",array("data"=> json_encode($u)));
             }
         }
@@ -52,6 +65,9 @@ class UsersController extends \BaseController {
             if($user!=null)
             {
                 $user = User::where('user_id',$data['user_id'])->update($data);
+                DB::table('user_profiles')
+                    ->where('user_id',$data['user_id'])
+                    ->update(array('user_id'=>$data['user_id'],'full_name'=>$name,'is_active'=>'Y','created_on'=>$data['created_on']));
                 return View::make("Users/Create.show",array("data"=> json_encode($data)));
             }
             else
@@ -59,6 +75,11 @@ class UsersController extends \BaseController {
 
                 $u =  new User($data);
                 $u->save();
+                $userP->user_id = $data['user_id'];
+                $userP->full_name = $name;
+                $userP->is_active = 'Y';
+                $userP->created_on = $data['created_on'];
+                $userP->save();
                 return View::make("Users/Create.show",array("data"=> json_encode($u)));
             }
 

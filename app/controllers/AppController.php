@@ -36,17 +36,25 @@ class AppController extends BaseController {
 
     public function update($id)
     {
+        //try {
+
+
         $dd = json_decode($id,true);
        // print_r($dd);
 
         ///$d = var_dump($dd);
-        User::where('user_id',$dd['user_id'])->update($dd);
+       $user =  User::where('user_id',$dd['user_id'])->update($dd);
 
         //$u->fill($dd);
 
 
         // return  $dd->role_id;
-        return View::make("AppUser.AppUser",array("data"=> json_encode($dd)));
+        return View::make("AppUser.AppUser",array("data"=> json_encode($user)));
+//        }
+//        catch(PDOException $exception) {
+//           // return Response::make('Database error! ' . $exception->getCode().'---'. $exception->getMessage());
+//            throw new PDOException;
+//        }
     }
 
 

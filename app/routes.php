@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+class UserException extends PDOException{}
 
 Route::get('/', function()
 {
@@ -24,7 +24,7 @@ Route::get('/AppUser/{name}/{password}/{email}' ,'AppController@SignUp');
 /*
  *   Users Routes
  */
-Route::get('/Users/Create/{signUpType}/{data}' ,'UsersController@SignUp');
+Route::get('/Users/Create/{signUpType}/{data}/{name}' ,'UsersController@SignUp');
 Route::get('/Users/Update/{data}' ,'UsersController@edit');
 Route::get('/Users' ,'UsersController@index');
 Route::get('/Users/{id}' ,'UsersController@show');
