@@ -114,7 +114,8 @@ class UsersController extends \BaseController {
                     $u = json_encode($user);
                     $userP = UserProfile::where('user_id',$data['email'])->first();
                     $userP = json_encode($userP);
-                    return View::make('Users.index', array("data" =>$u.$userP));
+                    $finalObj = json_encode(array_merge(json_decode($user, true),json_decode($userP, true)));
+                    return View::make('Users.index', array("data" =>$finalObj));
                 }
                 else {
                    // return 'email id or password invalid';
@@ -136,7 +137,8 @@ class UsersController extends \BaseController {
                 $u = json_encode($user);
                 $userP = UserProfile::where('user_id',$data['email'])->first();
                 $userP = json_encode($userP);
-                return View::make('Users.index', array("data" =>$u.$userP));
+                 $finalObj = json_encode(array_merge(json_decode($user, true),json_decode($userP, true)));
+                return View::make('Users.index', array("data" =>$finalObj));
             }
             else
             {
