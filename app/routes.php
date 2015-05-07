@@ -25,6 +25,7 @@ Route::get('/AppUser/{name}/{password}/{email}' ,'AppController@SignUp');
  *   Users Routes
  */
 Route::get('/Users/Create/{signUpType}/{data}/{name}' ,'UsersController@SignUp');
+Route::get('/Users/SignIn/{signInData}' ,'UsersController@SignIn');
 Route::get('/Users/Update/{data}' ,'UsersController@edit');
 Route::get('/Users' ,'UsersController@index');
 Route::get('/Users/{id}' ,'UsersController@show');

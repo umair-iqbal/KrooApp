@@ -30,31 +30,32 @@ App::missing(function($e)
     return Response::make('404 not found', 404);
 });
 
-App::error(function(PDOException $e)
-{
-    Log::error($e);
-    $code = $e->getCode();
-//var_dump($e,$cod);
-    //return $code;
-        switch ($code) {
-        case 23000:
-            return 'Database error! ' .'Code :' . $e->getCode().' Message : Integrity constant violation';
-
-        case '42S22':
-            return 'Database error! ' .'Code :' . $e->getCode().' Message : Unknown column';
-
-        case 404:
-            return $code;
-
-        case 500:
-            return $code;
-
-    }
-
-});
+//App::error(function(PDOException $e)
+//{
+//    Log::error($e);
+//    $code = $e->getCode();
+////var_dump($e,$cod);
+//    //return $code;
+//        switch ($code) {
+//        case 23000:
+//            return 'Database error! ' .'Code :' . $e->getCode().' Message : Integrity constant violation';
+//
+//        case '42S22':
+//            return 'Database error! ' .'Code :' . $e->getCode().' Message : Unknown column';
+//
+//        case 404:
+//            return $code;
+//
+//        case 500:
+//            return $code;
+//
+//    }
+//
+//});
 
 App::error(function(Exception $exception,$code) {
 
+    //return $exception .'--' .$code;
     if($code==404)
     {
         $Newcode = 404;

@@ -27,6 +27,7 @@ class UsersController extends \BaseController {
         $userP = new UserProfile();
         $signUpType = strtoupper($signUpType);
         $data = json_decode($data,true);
+
         if($signUpType=='K')
         {
 
@@ -81,6 +82,65 @@ class UsersController extends \BaseController {
                 $userP->created_on = $data['created_on'];
                 $userP->save();
                 return View::make("Users/Create.show",array("data"=> json_encode($u)));
+            }
+
+        }
+
+    }
+
+
+    /**
+     * @param $signUpType
+     * @param $data
+     * @param $name
+     * @return mixed
+     */
+    public function SignIn($data)
+    {
+
+        $data = json_decode($data,true);
+
+        $userP = new UserProfile();
+        $signUpType = strtoupper($data['type']);
+
+        if($signUpType=='K')
+        {
+
+            $user = User::where('user_id',$data['email'])->first();
+            if($user!=null)
+            {
+                if($user->user_password==$data['password']){
+
+                    $u = json_encode($user);
+                    $userP = UserProfile::where('user_id',$data['email'])->first();
+                    $userP = json_encode($userP);
+                    return View::make('Users.index', array("data" =>$u.$userP));
+                }
+                else {
+                   // return 'email id or password invalid';
+                    return View::make('Users.index', array("data" => 'email id or password invalid'));
+                }
+            }
+            else
+            {
+                //return 'email id or password invalid';
+                return View::make('Users.index', array("data" => 'email id or password invalid'));
+            }
+        }
+        else if($signUpType=='S')
+        {
+            $user = User::where('user_id',$data['email'])->first();
+            if($user!=null)
+            {
+
+                $u = json_encode($user);
+                $userP = UserProfile::where('user_id',$data['email'])->first();
+                $userP = json_encode($userP);
+                return View::make('Users.index', array("data" =>$u.$userP));
+            }
+            else
+            {
+                return View::make('Users.index', array("data" => 'email id or password invalid'));
             }
 
         }
