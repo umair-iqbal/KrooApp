@@ -68,26 +68,29 @@ App::error(function(Exception $exception,$code) {
     if($Newcode!=0) {
         switch ($Newcode) {
             case 23000:
-                return 'Database error! ' . ' Code :' . $exception->getCode() . ' Message : Integrity constraint violation';
+
+                return Response::json(array('response-code' => $exception->getCode(), 'response-message' => 'Integrity constraint violation'));
+
 
             case '42S22':
-                return 'Database error! ' . 'Code :' . $exception->getCode() . ' Message : Unknown column';
+                return Response::json(array('response-code' => $exception->getCode(), 'response-message' => 'Unknown column'));
+
 
             case 404:
-                return 'Error ' . 'Code :' . $Newcode . ' Message : Page not found';
+                return Response::json(array('response-code' => $Newcode, 'response-message' => 'URL not found'));
 
             case 500:
-                return $code;
+                return Response::json(array('response-code' => $Newcode, 'response-message' => 'Internal Server Error'));
+
+            case $Newcode:
+                return Response::json(array('response-code' => $Newcode, 'response-message' => $exception->getMessage()));
 
         }
     }
     else{
         // var_dump($exception);
 //    echo '<pre>';
-    echo 'MESSAGE :: ';
-        print_r($exception->getMessage());
-    echo '<br> CODE ::';
-    print_r($exception->getCode());
+        return Response::json(array('response-code' => $exception->getCode(), 'response-message' => $exception->getMessage()));
       //  $code = $exception->getCode();
 //    //print_r($code);
 //    echo '<br> FILE NAME ::';

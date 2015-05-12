@@ -66,6 +66,35 @@ class UserTeamsController extends \BaseController {
         return View::make('user_teams.index', array("data"=> json_encode($role)));
 	}
 
+    public function showByEmail($id)
+    {
+
+        $data = DB::table('users')->where('user_id', $id)->first();
+
+        if($data!=null)
+        {
+            $team = DB::table('user_teams')->where('user_id', $id)->get();
+
+
+            foreach($team as $item)
+            {
+
+                $data1 = DB::table('league_teams')->where('team_id', $item->team_id)->get();
+                if ($data1 != null) {
+                    $result[] =$data1;
+                    //return View::make('user_teams.index', array("data" => json_encode($data1)));
+                } else {
+                   // return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+                }
+            }
+            return View::make('user_teams.index', array("data" => json_encode($result)));
+        }
+        else{
+            return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+        }
+
+    }
+
 	/**
 	 * Show the form for editing the specified userteam.
 	 *

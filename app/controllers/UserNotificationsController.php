@@ -59,6 +59,31 @@ class UserNotificationsController extends \BaseController {
         return View::make('user_notifications.index', array("data"=> json_encode($role)));
 	}
 
+    public function showByEmail($id)
+	{
+
+        $data = DB::table('users')->where('user_id', $id)->first();
+
+        if($data!=null)
+        {
+            $match = ['user_id' => $id, 'notif_type_id' => 'K'];
+            $data1 = DB::table('user_notification')->where($match)->get();
+
+            if($data1!=null)
+            {
+                return View::make('user_notifications.index', array("data"=> json_encode($data1)));
+            }
+            else
+            {
+                return Response::json(array('response-code' => '405', 'response-message' => 'notifications not found.'));
+            }
+        }
+        else{
+            return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+        }
+
+    }
+
 	/**
 	 * Show the form for editing the specified usernotification.
 	 *

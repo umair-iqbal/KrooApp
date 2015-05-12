@@ -25,7 +25,7 @@ Route::get('/AppUser/{name}/{password}/{email}' ,'AppController@SignUp');
  *   Users Routes
  */
 Route::get('/Users/Create/{signUpType}/{data}/{name}' ,'UsersController@SignUp');
-Route::get('/Users/SignIn/{signInData}' ,'UsersController@SignIn');
+Route::get('/Users/SignIn/{type}/{signInData}' ,'UsersController@SignIn');
 Route::get('/Users/Update/{data}' ,'UsersController@edit');
 Route::get('/Users' ,'UsersController@index');
 Route::get('/Users/{id}' ,'UsersController@show');
@@ -419,7 +419,7 @@ Route::get('/user_notif_settings/Delete/{id}' ,'UserNotifSettingsController@dest
 Route::get('/user_notification/Create/{user_id}/{notif_type_id}/{notif_key}/{is_active}/{created_on}/{user_notificationcol}' ,'UserNotificationsController@store');
 Route::get('/user_notification/Update/{sr_no}/{user_id}/{notif_type_id}/{notif_key}/{is_active}/{created_on}/{user_notificationcol}' ,'UserNotificationsController@edit');
 Route::get('/user_notification' ,'UserNotificationsController@index');
-Route::get('/user_notification/{id}' ,'UserNotificationsController@show');
+Route::get('/user_notification/{id}' ,'UserNotificationsController@showByEmail');
 Route::get('/user_notification/Delete/{id}' ,'UserNotificationsController@destroy');
 
 
@@ -429,7 +429,8 @@ Route::get('/user_notification/Delete/{id}' ,'UserNotificationsController@destro
 Route::get('/user_profiles/Create/{user_id}/{full_name}/{phone_no}/{dob}/{country}/{gender}/{is_active}/{created_on}/{last_updated_on}' ,'UserProfilesController@store');
 Route::get('/user_profiles/Update/{sr_no}/{user_id}/{full_name}/{phone_no}/{dob}/{country}/{gender}/{is_active}/{created_on}/{last_updated_on}' ,'UserProfilesController@edit');
 Route::get('/user_profiles' ,'UserProfilesController@index');
-Route::get('/user_profiles/{id}' ,'UserProfilesController@show');
+//Route::get('/user_profiles/{id}' ,'UserProfilesController@show');
+Route::get('/user_profiles/{email_id}' ,'UserProfilesController@showByEmail');
 Route::get('/user_profiles/Delete/{id}' ,'UserProfilesController@destroy');
 
 
@@ -459,5 +460,5 @@ Route::get('/user_socail_networks/Delete/{id}' ,'UserSocailNetworksController@de
 Route::get('/user_teams/Create/{user_id}/{team_id}/{is_active}/{created_on}/{last_updated_on}' ,'UserTeamsController@store');
 Route::get('/user_teams/Update/{sr_no}/{user_id}/{team_id}/{is_active}/{created_on}/{last_updated_on}' ,'UserTeamsController@edit');
 Route::get('/user_teams' ,'UserTeamsController@index');
-Route::get('/user_teams/{id}' ,'UserTeamsController@show');
+Route::get('/user_teams/{id}' ,'UserTeamsController@showByEmail');
 Route::get('/user_teams/Delete/{id}' ,'UserTeamsController@destroy');

@@ -64,6 +64,26 @@ class UserProfilesController extends \BaseController {
         return View::make('user_profiles.index', array("data"=> json_encode($role)));
 	}
 
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function showByEmail($id)
+    {
+
+        $data = DB::table('users')->where('user_id', $id)->first();
+        if($data!=null)
+        {
+            return View::make('user_profiles.index', array("data"=> json_encode($data)));
+        }
+       else{
+           return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+       }
+
+
+    }
+
 	/**
 	 * Show the form for editing the specified userprofile.
 	 *

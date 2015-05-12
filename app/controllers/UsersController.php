@@ -36,11 +36,12 @@ class UsersController extends \BaseController {
             {
                 if(strtoupper($user->is_kroo_signup)=='N'){
 
-                    $user = User::where('user_id',$data['user_id'])->update($data);
+                 User::where('user_id',$data['user_id'])->update($data);
 
                     DB::table('user_profiles')
                         ->where('user_id',$data['user_id'])
                         ->update(array('user_id'=>$data['user_id'],'full_name'=>$name,'is_active'=>'Y','created_on'=>$data['created_on']));
+                    return View::make('users.index', array("data" => $user));
 
 
                 }
@@ -95,13 +96,11 @@ class UsersController extends \BaseController {
      * @param $name
      * @return mixed
      */
-    public function SignIn($data)
+    public function SignIn($type,$data)
     {
 
         $data = json_decode($data,true);
-
-        $userP = new UserProfile();
-        $signUpType = strtoupper($data['type']);
+        $signUpType = strtoupper($type);
 
         if($signUpType=='K')
         {
@@ -114,7 +113,7 @@ class UsersController extends \BaseController {
                     $u = json_encode($user);
                     $userP = UserProfile::where('user_id',$data['email'])->first();
                     $userP = json_encode($userP);
-                    $finalObj = json_encode(array_merge(json_decode($user, true),json_decode($userP, true)));
+                    $finalObj = json_encode(array_merge(json_decode($u, true),json_decode($userP, true)));
                     return View::make('Users.index', array("data" =>$finalObj));
                 }
                 else {
@@ -137,7 +136,7 @@ class UsersController extends \BaseController {
                 $u = json_encode($user);
                 $userP = UserProfile::where('user_id',$data['email'])->first();
                 $userP = json_encode($userP);
-                 $finalObj = json_encode(array_merge(json_decode($user, true),json_decode($userP, true)));
+                 $finalObj = json_encode(array_merge(json_decode($u, true),json_decode($userP, true)));
                 return View::make('Users.index', array("data" =>$finalObj));
             }
             else
