@@ -390,7 +390,7 @@ Route::get('/user_event_rewards/Delete/{id}' ,'UserEventRewardsController@destro
 Route::get('/user_events/Create/{user_id}/{event_id}/{is_active}/{is_attended}/{is_played}/{created_on}/{last_updated_on}' ,'UserEventsController@store');
 Route::get('/user_events/Update/{sr_no}/{user_id}/{event_id}/{is_active}/{is_attended}/{is_played}/{created_on}/{last_updated_on}' ,'UserEventsController@edit');
 Route::get('/user_events' ,'UserEventsController@index');
-Route::get('/user_events/{id}' ,'UserEventsController@show');
+Route::get('/user_events/{id}' ,'UserEventsController@showByEmail');
 Route::get('/user_events/Delete/{id}' ,'UserEventsController@destroy');
 
 

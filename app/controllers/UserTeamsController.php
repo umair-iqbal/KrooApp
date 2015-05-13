@@ -82,12 +82,15 @@ class UserTeamsController extends \BaseController {
                 $data1 = DB::table('league_teams')->where('team_id', $item->team_id)->get();
                 if ($data1 != null) {
                     $result[] =$data1;
-                    //return View::make('user_teams.index', array("data" => json_encode($data1)));
-                } else {
-                   // return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
                 }
             }
-            return View::make('user_teams.index', array("data" => json_encode($result)));
+            if($team!=null) {
+                return View::make('user_teams.index', array("data" => 'Success :' . json_encode($result)));
+            }
+            else
+            {
+                return Response::json(array('response-code' => '405', 'response-message' => 'no record found.'));
+            }
         }
         else{
             return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));

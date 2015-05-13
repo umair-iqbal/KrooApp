@@ -64,6 +64,42 @@ class UserEventsController extends \BaseController {
         return View::make('user_events.index', array("data"=> json_encode($role)));
 	}
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function showByEmail($id)
+    {
+
+        $data = DB::table('users')->where('user_id', $id)->first();
+
+        if($data!=null)
+        {
+            $match = ['user_id' => $id, 'is_attended' => 'N'];
+            $team = DB::table('user_events')->where($match)->get();
+
+
+            foreach($team as $item)
+            {
+               $data1 =  EventsView::where('event_id',$item->event_id)->get();// DB::table('league_teams')->where('team_id', $item->team_id)->get();
+                if ($data1 != null) {
+                    $result[] =$data1;
+                }
+            }
+
+            if($team!=null) {
+                return View::make('user_teams.index', array("data" => 'Success :' . json_encode($result)));
+            }
+            else{
+                return Response::json(array('response-code' => '405', 'response-message' => 'no record found.'));
+            }
+        }
+        else{
+            return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+        }
+
+    }
+
 	/**
 	 * Show the form for editing the specified userevent.
 	 *

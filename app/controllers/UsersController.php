@@ -41,7 +41,7 @@ class UsersController extends \BaseController {
                     DB::table('user_profiles')
                         ->where('user_id',$data['user_id'])
                         ->update(array('user_id'=>$data['user_id'],'full_name'=>$name,'is_active'=>'Y','created_on'=>$data['created_on']));
-                    return View::make('users.index', array("data" => $user));
+                    return View::make('users.index', array("data" => 'Success :' .$user));
 
 
                 }
@@ -58,7 +58,7 @@ class UsersController extends \BaseController {
                 $userP->is_active = 'Y';
                 $userP->created_on = $data['created_on'];
                 $userP->save();
-                return View::make("Users/Create.show",array("data"=> json_encode($u)));
+                return View::make("Users/Create.show",array("data"=> 'Success :' .json_encode($u)));
             }
         }
         else if($signUpType=='S')
@@ -70,7 +70,7 @@ class UsersController extends \BaseController {
                 DB::table('user_profiles')
                     ->where('user_id',$data['user_id'])
                     ->update(array('user_id'=>$data['user_id'],'full_name'=>$name,'is_active'=>'Y','created_on'=>$data['created_on']));
-                return View::make("Users/Create.show",array("data"=> json_encode($data)));
+                return View::make("Users/Create.show",array("data"=> 'Success :' .json_encode($data)));
             }
             else
             {
@@ -82,7 +82,7 @@ class UsersController extends \BaseController {
                 $userP->is_active = 'Y';
                 $userP->created_on = $data['created_on'];
                 $userP->save();
-                return View::make("Users/Create.show",array("data"=> json_encode($u)));
+                return View::make("Users/Create.show",array("data"=> 'Success :' .json_encode($u)));
             }
 
         }
@@ -114,7 +114,7 @@ class UsersController extends \BaseController {
                     $userP = UserProfile::where('user_id',$data['email'])->first();
                     $userP = json_encode($userP);
                     $finalObj = json_encode(array_merge(json_decode($u, true),json_decode($userP, true)));
-                    return View::make('Users.index', array("data" =>$finalObj));
+                    return View::make('Users.index', array("data" =>'Success :' .$finalObj));
                 }
                 else {
                    // return 'email id or password invalid';
@@ -137,7 +137,7 @@ class UsersController extends \BaseController {
                 $userP = UserProfile::where('user_id',$data['email'])->first();
                 $userP = json_encode($userP);
                  $finalObj = json_encode(array_merge(json_decode($u, true),json_decode($userP, true)));
-                return View::make('Users.index', array("data" =>$finalObj));
+                return View::make('Users.index', array("data" =>'Success :' .$finalObj));
             }
             else
             {

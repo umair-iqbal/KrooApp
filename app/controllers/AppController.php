@@ -18,7 +18,7 @@ class AppController extends BaseController {
     {
         //_construct();
 
-
+        return EventsView::all();
 
        // _construct();
        // $use = input::get('data');

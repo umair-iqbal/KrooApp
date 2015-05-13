@@ -75,7 +75,7 @@ class UserProfilesController extends \BaseController {
         $data = DB::table('users')->where('user_id', $id)->first();
         if($data!=null)
         {
-            return View::make('user_profiles.index', array("data"=> json_encode($data)));
+            return View::make('user_profiles.index', array("data"=> 'Success :' .json_encode($data)));
         }
        else{
            return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
