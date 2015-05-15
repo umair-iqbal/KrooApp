@@ -71,7 +71,7 @@ class UserNotificationsController extends \BaseController {
 
             if($data1!=null)
             {
-                return View::make('user_notifications.index', array("data"=> 'Success :' .json_encode($data1)));
+                return Response::json(array( 'response-message' => 'Success :','response-data' => $data1));
             }
             else
             {

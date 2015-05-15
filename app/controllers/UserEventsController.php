@@ -81,14 +81,14 @@ class UserEventsController extends \BaseController {
 
             foreach($team as $item)
             {
-               $data1 =  EventsView::where('event_id',$item->event_id)->get();// DB::table('league_teams')->where('team_id', $item->team_id)->get();
+               $data1 =  EventsView::where('event_id',$item->event_id)->get();
                 if ($data1 != null) {
                     $result[] =$data1;
                 }
             }
 
             if($team!=null) {
-                return View::make('user_teams.index', array("data" => 'Success :' . json_encode($result)));
+                return Response::json(array( 'response-message' => 'Success :','response-data' => $result));
             }
             else{
                 return Response::json(array('response-code' => '405', 'response-message' => 'no record found.'));

@@ -85,7 +85,7 @@ class UserTeamsController extends \BaseController {
                 }
             }
             if($team!=null) {
-                return View::make('user_teams.index', array("data" => 'Success :' . json_encode($result)));
+                return Response::json(array( 'response-message' => 'Success :','response-data' => $result));
             }
             else
             {
