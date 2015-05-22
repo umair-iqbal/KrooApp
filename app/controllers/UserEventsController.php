@@ -88,14 +88,14 @@ class UserEventsController extends \BaseController {
             }
 
             if($team!=null) {
-                return Response::json(array( 'response-message' => 'Success :','response-data' => $result));
+                return Response::json(array( 'status' => 200,'datajson' => $result));
             }
             else{
-                return Response::json(array('response-code' => '405', 'response-message' => 'no record found.'));
+                return Response::json(array('status' => '405', 'datajson' => 'no record found.'));
             }
         }
         else{
-            return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+            return Response::json(array('status' => '405', 'datajson' => 'user not exist.'));
         }
 
     }

@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'thekroo.tk',
+			'host'      => '127.0.0.1',
 			'database'  => 'kroo_db',
 			'username'  => 'root',
-			'password'  => '123',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

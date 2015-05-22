@@ -24,6 +24,7 @@ Route::get('/AppUser/{name}/{password}/{email}' ,'AppController@SignUp');
 /*
  *   Users Routes
  */
+Route::get('/Users/{id}/{d}' ,'UsersController@image');
 Route::get('/Users/Create/{signUpType}/{data}/{name}' ,'UsersController@SignUp');
 Route::get('/Users/SignIn/{type}/{signInData}' ,'UsersController@SignIn');
 Route::get('/Users/Update/{data}' ,'UsersController@edit');
@@ -34,6 +35,8 @@ Route::get('/Users/Delete/{id}' ,'UsersController@destroy');
 /*
  *   Admins Routes
  */
+
+
 Route::get('/admins/Create/{adminID}/{password}/{is_active}/{created_on}/{last_login_date}/{last_updated_on}' ,'AdminsController@store');
 Route::get('/admins/Update/{adminID}/{password}/{is_active}/{created_on}/{last_login_date}/{last_updated_on}' ,'AdminsController@edit');
 Route::get('/admins' ,'AdminsController@index');

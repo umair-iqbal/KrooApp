@@ -71,15 +71,15 @@ class UserNotificationsController extends \BaseController {
 
             if($data1!=null)
             {
-                return Response::json(array( 'response-message' => 'Success :','response-data' => $data1));
+                return Response::json(array( 'status' => 200,'datajson' => $data1));
             }
             else
             {
-                return Response::json(array('response-code' => '405', 'response-message' => 'notifications not found.'));
+                return Response::json(array('status' => '405', 'datajson' => 'notifications not found.'));
             }
         }
         else{
-            return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+            return Response::json(array('status' => '405', 'datajson' => 'user not exist.'));
         }
 
     }

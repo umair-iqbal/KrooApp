@@ -72,13 +72,13 @@ class UserProfilesController extends \BaseController {
     public function showByEmail($id)
     {
 
-        $data = DB::table('users')->where('user_id', $id)->first();
+        $data = DB::table('user_profiles')->where('user_id', $id)->first();
         if($data!=null)
         {
-            return Response::json(array( 'response-message' => 'Success :','response-data' => $data));
+            return Response::json(array( 'status' => 200,'datajson' => $data));
         }
        else{
-           return Response::json(array('response-code' => '405', 'response-message' => 'user not exist.'));
+           return Response::json(array('status' => '405', 'datajson' => 'user not exist.'));
        }
 
 
