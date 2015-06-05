@@ -15,10 +15,10 @@
 
 ClassLoader::addDirectories(array(
 
-	app_path().'/commands',
-	app_path().'/controllers',
-	app_path().'/models',
-	app_path().'/database/seeds',
+    app_path().'/commands',
+    app_path().'/controllers',
+    app_path().'/models',
+    app_path().'/database/seeds',
 
 ));
 
@@ -53,55 +53,55 @@ App::missing(function($e)
 //
 //});
 
-App::error(function(Exception $exception,$code) {
-
-    //return $exception .'--' .$code;
-    if($code==404)
-    {
-        $Newcode = 404;
-    }
-    else
-    {
-        $Newcode = $exception->getCode();
-    }
-     $code = $exception->getCode();
-    if($Newcode!=0) {
-        switch ($Newcode) {
-            case 23000:
-
-                return Response::json(array('response-code' => $exception->getCode(), 'response-message' => 'Integrity constraint violation'));
-
-
-            case '42S22':
-                return Response::json(array('response-code' => $exception->getCode(), 'response-message' => 'Unknown column'));
-
-
-            case 404:
-                return Response::json(array('response-code' => $Newcode, 'response-message' => 'URL not found'));
-
-            case 500:
-                return Response::json(array('response-code' => $Newcode, 'response-message' => 'Internal Server Error'));
-
-            case $Newcode:
-                return Response::json(array('response-code' => $Newcode, 'response-message' => $exception->getMessage()));
-
-        }
-    }
-    else{
-        // var_dump($exception);
-//    echo '<pre>';
-        return Response::json(array('response-code' => $exception->getCode(), 'response-message' => $exception->getMessage()));
-      //  $code = $exception->getCode();
-//    //print_r($code);
-//    echo '<br> FILE NAME ::';
-//    print_r($exception->getFile());
+//App::error(function(Exception $exception,$code) {
 //
-//    echo '<br> LINE NUMBER ::';
-//    print_r($exception->getLine());
-
-    }
-     die();// if you want than only
-});
+//    //return $exception .'--' .$code;
+//    if($code==404)
+//    {
+//        $Newcode = 404;
+//    }
+//    else
+//    {
+//        $Newcode = $exception->getCode();
+//    }
+//    $code = $exception->getCode();
+//    if($Newcode!=0) {
+//        switch ($Newcode) {
+//            case 23000:
+//
+//                return Response::json(array('status' => $exception->getCode(), 'datajson' => 'Integrity constraint violation'));
+//
+//
+//            case '42S22':
+//                return Response::json(array('status' => $exception->getCode(), 'datajson' => 'Unknown column'));
+//
+//
+//            case 404:
+//                return Response::json(array('status' => $Newcode, 'datajson' => 'URL not found'));
+//
+//            case 500:
+//                return Response::json(array('status' => $Newcode, 'datajson' => 'Internal Server Error'));
+//
+//            case $Newcode:
+//                return Response::json(array('status' => $Newcode, 'datajson' => $exception->getMessage()));
+//
+//        }
+//    }
+//    else{
+//        // var_dump($exception);
+////    echo '<pre>';
+//        return Response::json(array('status' => $exception->getCode(), 'datajson' => $exception->getMessage()));
+//        //  $code = $exception->getCode();
+////    //print_r($code);
+////    echo '<br> FILE NAME ::';
+////    print_r($exception->getFile());
+////
+////    echo '<br> LINE NUMBER ::';
+////    print_r($exception->getLine());
+//
+//    }
+//    die();// if you want than only
+//});
 
 /*
 |--------------------------------------------------------------------------
@@ -131,7 +131,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    Log::error($exception);
 });
 
 /*
@@ -147,7 +147,8 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	return Response::make("Be right back!", 503);
+
+    return Response::json(array('status' => 503, 'datajson' => "Be right back!"));
 });
 
 /*

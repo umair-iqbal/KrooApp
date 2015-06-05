@@ -10,9 +10,29 @@ class LeagueTeamsController extends \BaseController {
     public $restful = true;
 	public function index()
 	{
-		$leagueteams = Leagueteam::all();
+        $data = Input::all();
+        if($data!=null) {
+            $match = ['league_id' => $data['league_id'], 'is_active' => 'Y'];
+            $leagueteams = DB::table('league_teams')->where($match)->get();
+            if($leagueteams!=null) {
+                return Response::json(array('status' => 200, 'datajson' => $leagueteams));
+            }
+            else
+            {
+                return Response::json(array('status' => 200, 'datajson' => null ,'status_message'=>'no record found'));
+            }
+        }
+        else{
+            $leagueteams = DB::table('league_teams')->where('is_active','Y')->get();
 
-        return View::make('League_teams.index',array("data"=> json_encode($leagueteams)));
+            if($leagueteams!=null) {
+                return Response::json(array('status' => 200, 'datajson' => $leagueteams));
+            }
+            else
+            {
+                return Response::json(array('status' => 200, 'datajson' => null ,'status_message'=>'no record found'));
+            }
+        }
 	}
 
 	/**

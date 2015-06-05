@@ -2,7 +2,7 @@
 
 if(isset($data))
 {
-    print_r($data);
+    echo json_encode($data);
 }
 else
 {

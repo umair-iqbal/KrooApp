@@ -59,29 +59,31 @@ class UserNotificationsController extends \BaseController {
         return View::make('user_notifications.index', array("data"=> json_encode($role)));
 	}
 
-    public function showByEmail($id)
-	{
+    public function showByEmail()
+    {
+        $data = Input::all();
+        if ($data != null) {
+            $id = $data['user_id'];
 
-        $data = DB::table('users')->where('user_id', $id)->first();
+            $dataT = DB::table('users')->where('user_id', $id)->first();
 
-        if($data!=null)
+            if ($dataT != null) {
+                $match = ['user_id' => $id, 'notif_type_id' => 'K'];
+                $data1 = DB::table('user_notification')->where($match)->get();
+
+                if ($data1 != null) {
+                    return Response::json(array('status' => 200, 'datajson' => $data1));
+                } else {
+                    return Response::json(array('status' => 200, 'datajson' => 'no record found'));
+                }
+            } else {
+                return Response::json(array('status' => 200, 'datajson' => 'user not exist'));
+            }
+        }
+        else
         {
-            $match = ['user_id' => $id, 'notif_type_id' => 'K'];
-            $data1 = DB::table('user_notification')->where($match)->get();
-
-            if($data1!=null)
-            {
-                return Response::json(array( 'status' => 200,'datajson' => $data1));
-            }
-            else
-            {
-                return Response::json(array('status' => '405', 'datajson' => 'notifications not found.'));
-            }
+            return Response::json(array('status' => 203, 'datajson' => 'invalid query string'));
         }
-        else{
-            return Response::json(array('status' => '405', 'datajson' => 'user not exist.'));
-        }
-
     }
 
 	/**

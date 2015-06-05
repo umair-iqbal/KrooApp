@@ -12,7 +12,7 @@ class UsersController extends \BaseController {
 	public function index()
 	{
 		$users = User::all();
-		return View::make('users.index',array("data"=> json_encode($users)));
+		return View::make('Users.index',array("data"=> json_encode($users)));
 	}
 
 
@@ -22,73 +22,83 @@ class UsersController extends \BaseController {
      * @return mixed
      */
 
-    public function SignUp($signUpType,$data,$name)
+    public function SignUp()
     {
-        $userP = new UserProfile();
-        $signUpType = strtoupper($signUpType);
-        $data = json_decode($data,true);
 
-        if($signUpType=='K')
-        {
+        $data = Input::all();
 
-           $user = User::where('user_id',$data['user_id'])->first();
-            if($user!=null)
-            {
-                if(strtoupper($user->is_kroo_signup)=='N'){
+        if($data!=null) {
+            $name = $data['name'];
+            $signUpType = strtoupper($data['type']);
+            $userP = new UserProfile();
+            $signUpType = strtoupper($signUpType);
+            $data['is_active'] = 'Y';
+            $data['role_id'] = 'krooregular';
+            $data['type'] = strtoupper($data['type']);
+            $data['is_pass_changed'] = 'N';
 
-                 User::where('user_id',$data['user_id'])->update($data);
+            if ($signUpType == 'K') {
 
+
+                $user = User::where('user_id', $data['user_id'])->first();
+                if ($user != null) {
+                    $data['is_kroo_signup'] = 'Y';
+                    if (strtoupper($user->is_kroo_signup) == 'N') {
+
+                        User::where('user_id', $data['user_id'])->update(array('user_id'=> $data['user_id'],'is_kroo_signup'=>$data['is_kroo_signup'],'user_password'=>$data['user_password']));
+
+                        DB::table('user_profiles')
+                            ->where('user_id', $data['user_id'])
+                            ->update(array('user_id' => $data['user_id'], 'full_name' => $name, 'is_active' => 'Y', 'created_on' => $data['created_on']));
+                        //return View::make('users.index', array("data" => 'Success :' .$user));
+                        $user = User::where('user_id', $data['user_id'])->first();
+                        return Response::json(array('status' => 200, 'datajson' => $user));
+
+
+                    } else {
+                        return Response::json(array('status' => 200, 'datajson' => 'user already exist.'));
+
+                    }
+                } else {
+                    $data['is_kroo_signup'] = 'Y';
+                    $u = new User($data);
+                    $u->save();
+
+                    $userP->user_id = $data['user_id'];
+                    $userP->full_name = $name;
+                    $userP->is_active = 'Y';
+                    $userP->created_on = $data['created_on'];
+                    $userP->save();
+                    $user = User::where('user_id', $data['user_id'])->first();
+                    return Response::json(array('status' => 200, 'datajson' => $user));
+                }
+            } else if ($signUpType == 'S') {
+                $user = User::where('user_id', $data['user_id'])->first();
+                if ($user != null) {
+                    User::where('user_id', $data['user_id'])->update(array('user_id'=> $data['user_id'],'user_password'=>$data['user_password']));
                     DB::table('user_profiles')
-                        ->where('user_id',$data['user_id'])
-                        ->update(array('user_id'=>$data['user_id'],'full_name'=>$name,'is_active'=>'Y','created_on'=>$data['created_on']));
-                    //return View::make('users.index', array("data" => 'Success :' .$user));
-                    return Response::json(array( 'status' => 200,'datajson' => $user));
+                        ->where('user_id', $data['user_id'])
+                        ->update(array('user_id' => $data['user_id'], 'full_name' => $name, 'is_active' => 'Y', 'created_on' => $data['created_on']));
+                    $user = User::where('user_id', $data['user_id'])->first();
+                    return Response::json(array('status' => 200, 'datajson' => $user));
+                } else {
 
-
+                    $data['is_kroo_signup'] = 'N';
+                    $u = new User($data);
+                    $u->save();
+                    $userP->user_id = $data['user_id'];
+                    $userP->full_name = $name;
+                    $userP->is_active = 'Y';
+                    $userP->created_on = $data['created_on'];
+                    $userP->save();
+                    $user = User::where('user_id', $data['user_id'])->first();
+                    return Response::json(array('status' => 200, 'datajson' => $user));
                 }
-                else {
-                    return Response::json(array('status' => '405', 'datajson' => 'user already exist.'));
 
-                }
-            }
-            else
-            {
-                $u =  new User($data);
-                $u->save();
-                $userP->user_id = $data['user_id'];
-                $userP->full_name = $name;
-                $userP->is_active = 'Y';
-                $userP->created_on = $data['created_on'];
-                $userP->save();
-                $user = User::where('user_id',$data['user_id'])->first();
-                return Response::json(array( 'status' => 200,'datajson' => $user));
             }
         }
-        else if($signUpType=='S')
-        {
-            $user = User::where('user_id',$data['user_id'])->first();
-            if($user!=null)
-            {
-                $user = User::where('user_id',$data['user_id'])->update($data);
-                DB::table('user_profiles')
-                    ->where('user_id',$data['user_id'])
-                    ->update(array('user_id'=>$data['user_id'],'full_name'=>$name,'is_active'=>'Y','created_on'=>$data['created_on']));
-                return Response::json(array( 'status' => 200,'datajson' => $user));
-            }
-            else
-            {
-
-                $u =  new User($data);
-                $u->save();
-                $userP->user_id = $data['user_id'];
-                $userP->full_name = $name;
-                $userP->is_active = 'Y';
-                $userP->created_on = $data['created_on'];
-                $userP->save();
-                $user = User::where('user_id',$data['user_id'])->first();
-                return Response::json(array( 'status' => 200,'datajson' => $user));
-            }
-
+        else{
+            return Response::json(array('status' => 203, 'datajson' => 'invalid querry string'));
         }
 
     }
@@ -100,62 +110,155 @@ class UsersController extends \BaseController {
      * @param $name
      * @return mixed
      */
-    public function SignIn($type,$data)
+    public function SignIn()
     {
 
-        $data = json_decode($data,true);
-        $signUpType = strtoupper($type);
+        $data = Input::all();
+        if($data!=null) {
+            $signUpType = strtoupper($data['type']);
 
-        if($signUpType=='K')
-        {
+            if ($signUpType == 'K') {
 
-            $user = User::where('user_id',$data['email'])->first();
-            if($user!=null)
-            {
-                if($user->user_password==$data['password']){
+                $user = User::where('user_id', $data['email'])->first();
+                if ($user != null) {
+                    if ($user->user_password == $data['password']) {
 
-                    $u = json_encode($user);
-                    $userP = UserProfile::where('user_id',$data['email'])->first();
-                    $userP = json_encode($userP);
-                    $finalObj = json_encode(array_merge(json_decode($u, true),json_decode($userP, true)));
 
-                    return Response::json(array( 'status' => 200,'datajson' => $finalObj));
+                        $userP = UserProfile::where('user_id', $data['email'])->first();
+
+                        $final = array('sr_no' => $user->sr_no, 'user_id' => $user->user_id, 'user_category'=> $user->user_category, 'role_id' => $user->role_id,
+                            'user_password' => $user->user_password, 'is_active' => $user->is_active, 'is_pass_changed' => $user->is_pass_changed, 'is_kroo_signup' => $user->is_kroo_signup,
+                            'potential_points' => $user->potential_points, 'global_rank' => $user->global_rank, 'created_on' => $user->created_on, 'last_login_date' => $user->last_login_date,
+                            'last_updated_on' => $user->last_updated_on, 'full_name' => $userP->full_name, 'phone_no' => $userP->phone_no, 'dob' => $user->dob, 'country' => $userP->country,
+                            'gender' => $userP->gender);
+
+
+                        return Response::json(array('status' => 200, 'datajson' => $final));
+
+                    } else {
+                        // return 'email id or password invalid';
+
+                        return Response::json(array('status' => 200, 'datajson' => 'email id or password invalid'));
+                    }
+                } else {
+                    //return 'email id or password invalid';
+                    return Response::json(array('status' => 200, 'datajson' => 'email id or password invalid'));
                 }
-                else {
-                   // return 'email id or password invalid';
+            } else if ($signUpType == 'S') {
+                $user = User::where('user_id', $data['email'])->first();
+                if ($user != null) {
+                    $userP = UserProfile::where('user_id', $data['email'])->first();
 
-                    return Response::json(array('status' => '405', 'datajson' => 'email id or password invalid'));
+                    $final = array('sr_no' => $user->sr_no, 'user_id' => $user->user_id, 'user_category'=> $user->user_category, 'role_id' => $user->role_id,
+                        'user_password' => $user->user_password, 'is_active' => $user->is_active, 'is_pass_changed' => $user->is_pass_changed, 'is_kroo_signup' => $user->is_kroo_signup,
+                        'potential_points' => $user->potential_points, 'global_rank' => $user->global_rank, 'created_on' => $user->created_on, 'last_login_date' => $user->last_login_date,
+                        'last_updated_on' => $user->last_updated_on, 'full_name' => $userP->full_name, 'phone_no' => $userP->phone_no, 'dob' => $user->dob, 'country' => $userP->country,
+                        'gender' => $userP->gender);
+                    return Response::json(array('status' => 200, 'datajson' => $final));
+                } else {
+                    return Response::json(array('status' => 200, 'datajson' => 'email id or password invalid'));
                 }
-            }
-            else
-            {
-                //return 'email id or password invalid';
-                return Response::json(array('status' => '405', 'datajson' => 'email id or password invalid'));
+
             }
         }
-        else if($signUpType=='S')
+        else
         {
-            $user = User::where('user_id',$data['email'])->first();
-            if($user!=null)
-            {
-
-                $u = json_encode($user);
-                $userP = UserProfile::where('user_id',$data['email'])->first();
-                $userP = json_encode($userP);
-                 $finalObj = json_encode(array_merge(json_decode($u, true),json_decode($userP, true)));
-                return Response::json(array( 'status' => 200,'datajson' => $finalObj));
-            }
-            else
-            {
-                return Response::json(array('status' => '405', 'datajson' => 'email id or password invalid'));
-            }
-
+            return Response::json(array('status' => 203, 'datajson' => 'invalid query string'));
         }
 
     }
 
 
-	/**
+    public function forgetPass()
+    {
+        $data = Input::all();
+        if ($data != null) {
+
+
+            $dt = new DateTime();
+
+            $user = User::where('user_id', $data['user_id'])->first();
+            if ($user != null) {
+                $rand = substr(md5(microtime()),rand(0,26),5);
+                //echo $rand;
+                $userCode = new UserEmailCode();
+                $userCode->user_id = $data['user_id'];
+                $userCode->user_email_code = $rand;
+                $userCode->is_latest = 'Y';
+                $userCode->created_on =$dt;
+                $userCode->save();
+
+                Mail::send('Email.index',array('code'=>'Code : '.$rand ), function($message) {
+                    $data2 = Input::all();
+                    $message->to($data2['user_id'] , '')->subject('Password reset code.');
+                });
+
+
+                return Response::json(array('status' => 200, 'datajson' => null,'status_message'=>'email sent.'));
+            } else {
+                //return 'email id or password invalid';
+                return Response::json(array('status' => 200, 'datajson' => null,'status_message'=>'user not exist.'));
+            }
+
+        }
+        else
+        {
+            return Response::json(array('status' => 203, 'datajson' => null,'status_message'=>'invalid querry string.'));
+        }
+    }
+
+
+
+    public function resetPass()
+    {
+
+
+
+        $data = Input::all();
+        if ($data != null) {
+
+            $user = User::where('user_id', $data['user_id'])->first();
+            if ($user != null) {
+
+
+                $match = ['user_id' => $data['user_id'], 'user_email_code' => $data['code']];
+                $user_email = UserEmailCode::where($match)->first();
+
+                if($user_email!=null) {
+                    DB::table('user_email_codes')
+                        ->where($match)
+                        ->update(array('is_latest' => 'N'));
+
+                    DB::table('users')
+                        ->where('user_id',$data['user_id'])
+                        ->update(array('user_password' => $data['password']));
+
+                    $response = file_get_contents('http://localhost/KrooApp/public/index.php/user_profiles/GetUserProfile?user_id='.$data['user_id']);
+                    $response = json_decode($response);
+                    $response->status_message = 'password reset.';
+                    return Response::json(array($response));
+
+                }
+                else
+                {
+                    return Response::json(array('status' => 200, 'datajson' =>null,'status_message'=> 'Invalid Code'));
+                }
+                
+            } else {
+                //return 'email id or password invalid';
+                return Response::json(array('status' => 200, 'datajson' => null,'status_message'=>'user not exist'));
+            }
+
+        }
+        else
+        {
+            return Response::json(array('status' => 203, 'datajson' => null,'status_message'=>'invalid query string'));
+        }
+    }
+
+
+
+    /**
 	 * Display the specified user.
 	 *
 	 * @param  int  $id

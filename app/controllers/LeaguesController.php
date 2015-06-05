@@ -10,9 +10,16 @@ class LeaguesController extends \BaseController {
     public $restful = true;
 	public function index()
 	{
-		$leagues = League::all();
+		$leagues =  DB::table('leagues')->where('is_active', 'Y')->get();
 
-        return View::make('Leagues.index',array("data"=> json_encode($leagues)));
+        if($leagues!=null)
+        {
+            return Response::json(array('status' => 200, 'datajson' => $leagues));
+        }
+        else {
+            return Response::json(array('status' => 200, 'datajson' =>'no record found'));
+        }
+
 	}
 
 	/**

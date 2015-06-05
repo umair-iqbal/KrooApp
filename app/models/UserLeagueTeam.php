@@ -9,7 +9,7 @@ class UserTeam extends \Eloquent {
      *
      * @var string
      */
-    protected $table = 'user_teams';
+    protected $table = 'user_league_teams';
 
 
 

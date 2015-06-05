@@ -14,24 +14,29 @@ class AppController extends BaseController {
 //    }
 
 
-    public function show($id)
+    public function show()
     {
-        //_construct();
 
-        return EventsView::all();
-
-       // _construct();
-       // $use = input::get('data');
-
-        $dd = json_decode($id,true);
-
-        $d = var_dump($dd);
-        $u =  new User($dd);
-        //$u->fill($dd);
-        $u->save();
-
-       // return  $dd->role_id;
-        return View::make("AppUser.AppUser",array("data"=> json_encode($dd)));
+        $row = $_POST['email'];
+        echo $row;
+        return "<pre>" . print_r(Input::all(), true) . "</pre>";
+        //return print_r($id);
+//        //_construct();
+//
+//        return EventsView::all();
+//
+//       // _construct();
+//       // $use = input::get('data');
+//
+//        $dd = json_decode($id,true);
+//
+//        $d = var_dump($dd);
+//        $u =  new User($dd);
+//        //$u->fill($dd);
+//        $u->save();
+//
+//       // return  $dd->role_id;
+        //return View::make("AppUser.AppUser",array("data"=> json_encode($dd)));
     }
 
     public function update($id)

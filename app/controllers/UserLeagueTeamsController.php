@@ -66,35 +66,44 @@ class UserTeamsController extends \BaseController {
         return View::make('user_teams.index', array("data"=> json_encode($role)));
 	}
 
-    public function showByEmail($id)
+    public function showByEmail()
     {
+        $data = Input::all();
+        $return_arr = array();
+        if($data!=null) {
+            $id = $data['user_id'];
 
-        $data = DB::table('users')->where('user_id', $id)->first();
+            $data = DB::table('users')->where('user_id', $id)->first();
 
-        if($data!=null)
-        {
-            $team = DB::table('user_teams')->where('user_id', $id)->get();
+            if ($data != null) {
+                $team = DB::table('user_league_teams')->where('user_id', $id)->get();
 
 
-            foreach($team as $item)
-            {
+                foreach ($team as $item) {
 
-                $data1 = DB::table('league_teams')->where('team_id', $item->team_id)->get();
-                if ($data1 != null) {
-                    $result[] =$data1;
+                    $data1 = DB::table('league_teams')->where('team_id', $item->team_id)->get();
+                    if ($data1 != null) {
+                        array_push($return_arr,$data1);
+                    }
+
+
+
                 }
-            }
 
-            if($team!=null) {
-                return Response::json(array( 'status' => 200,'datajson' => $result));
-            }
-            else
-            {
-                return Response::json(array('status' => '405', 'datajson' => 'no record found.'));
+                if ($team != null) {
+                    //return Response::json(array('status' => 200, 'datajson' => array('teams'=>$result)));
+                    return View::make('user_teams.index', array('data'=>array('status' => 200, 'datajson' => array('teams'=>$return_arr))));
+
+                } else {
+                    return Response::json(array('status' => 200, 'datajson' => 'no record found'));
+                }
+            } else {
+                return Response::json(array('status' => 200, 'datajson' => 'user not exist'));
             }
         }
-        else{
-            return Response::json(array('status' => '405', 'datajson' => 'user not exist.'));
+        else
+        {
+            return Response::json(array('status' => 203, 'datajson' => 'invalid query string'));
         }
 
     }

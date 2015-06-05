@@ -16,20 +16,33 @@ Route::get('/', function()
 {
     return 'Hello World';
 });
-Route::get('/AppUser1/{data}' ,'AppController@show');
+
+Route::post('/foo/bar','AppController@show');
+
+Route::get('AppUser1/Create','AppController@show');
 Route::get('/AppUserUp/{data}' ,'AppController@update');
 
 Route::get('/AppUser/{name}/{password}/{email}' ,'AppController@SignUp');
+Route::get('test', function(){
+    $data = array( 'message' => 'message' );
+//    Mail::send('Users.index', $data, function($message) {
+//        $message->to('umair.iqbal61@gmail.com', 'umair')->subject('Welcome to the Laravel 4 Auth App!');
+//    });
+    $rand = substr(md5(microtime()),rand(0,26),5);
+    echo $rand;
+});
 
 /*
  *   Users Routes
  */
 Route::get('/Users/{id}/{d}' ,'UsersController@image');
-Route::get('/Users/Create/{signUpType}/{data}/{name}' ,'UsersController@SignUp');
-Route::get('/Users/SignIn/{type}/{signInData}' ,'UsersController@SignIn');
+Route::get('/Users/SignUp' ,'UsersController@SignUp');
+Route::get('/Users/SignIn' ,'UsersController@SignIn');
 Route::get('/Users/Update/{data}' ,'UsersController@edit');
 Route::get('/Users' ,'UsersController@index');
-Route::get('/Users/{id}' ,'UsersController@show');
+Route::get('/Users/ForgetPassword' ,'UsersController@forgetPass');
+Route::get('/Users/ResetPassword' ,'UsersController@resetPass');
+//Route::get('/Users/ForgetPassword' ,'UsersController@forgetPass');
 Route::get('/Users/Delete/{id}' ,'UsersController@destroy');
 
 /*
@@ -393,7 +406,7 @@ Route::get('/user_event_rewards/Delete/{id}' ,'UserEventRewardsController@destro
 Route::get('/user_events/Create/{user_id}/{event_id}/{is_active}/{is_attended}/{is_played}/{created_on}/{last_updated_on}' ,'UserEventsController@store');
 Route::get('/user_events/Update/{sr_no}/{user_id}/{event_id}/{is_active}/{is_attended}/{is_played}/{created_on}/{last_updated_on}' ,'UserEventsController@edit');
 Route::get('/user_events' ,'UserEventsController@index');
-Route::get('/user_events/{id}' ,'UserEventsController@showByEmail');
+Route::get('/user_events/GetRemainingEvents' ,'UserEventsController@showByEmail');
 Route::get('/user_events/Delete/{id}' ,'UserEventsController@destroy');
 
 
@@ -422,18 +435,18 @@ Route::get('/user_notif_settings/Delete/{id}' ,'UserNotifSettingsController@dest
 Route::get('/user_notification/Create/{user_id}/{notif_type_id}/{notif_key}/{is_active}/{created_on}/{user_notificationcol}' ,'UserNotificationsController@store');
 Route::get('/user_notification/Update/{sr_no}/{user_id}/{notif_type_id}/{notif_key}/{is_active}/{created_on}/{user_notificationcol}' ,'UserNotificationsController@edit');
 Route::get('/user_notification' ,'UserNotificationsController@index');
-Route::get('/user_notification/{id}' ,'UserNotificationsController@showByEmail');
+Route::get('/user_notification/GetUserNotifications' ,'UserNotificationsController@showByEmail');
 Route::get('/user_notification/Delete/{id}' ,'UserNotificationsController@destroy');
 
 
 /*
  *  User_profiles Routes
  */
-Route::get('/user_profiles/Create/{user_id}/{full_name}/{phone_no}/{dob}/{country}/{gender}/{is_active}/{created_on}/{last_updated_on}' ,'UserProfilesController@store');
+Route::get('/user_profiles/set_profile' ,'UserProfilesController@store');
 Route::get('/user_profiles/Update/{sr_no}/{user_id}/{full_name}/{phone_no}/{dob}/{country}/{gender}/{is_active}/{created_on}/{last_updated_on}' ,'UserProfilesController@edit');
 Route::get('/user_profiles' ,'UserProfilesController@index');
 //Route::get('/user_profiles/{id}' ,'UserProfilesController@show');
-Route::get('/user_profiles/{email_id}' ,'UserProfilesController@showByEmail');
+Route::get('/user_profiles/GetUserProfile' ,'UserProfilesController@showByEmail');
 Route::get('/user_profiles/Delete/{id}' ,'UserProfilesController@destroy');
 
 
@@ -463,5 +476,5 @@ Route::get('/user_socail_networks/Delete/{id}' ,'UserSocailNetworksController@de
 Route::get('/user_teams/Create/{user_id}/{team_id}/{is_active}/{created_on}/{last_updated_on}' ,'UserTeamsController@store');
 Route::get('/user_teams/Update/{sr_no}/{user_id}/{team_id}/{is_active}/{created_on}/{last_updated_on}' ,'UserTeamsController@edit');
 Route::get('/user_teams' ,'UserTeamsController@index');
-Route::get('/user_teams/{id}' ,'UserTeamsController@showByEmail');
+Route::any('/user_teams/GetTeams' ,'UserTeamsController@showByEmail');
 Route::get('/user_teams/Delete/{id}' ,'UserTeamsController@destroy');

@@ -68,34 +68,38 @@ class UserEventsController extends \BaseController {
      * @param $id
      * @return mixed
      */
-    public function showByEmail($id)
+    public function showByEmail()
     {
 
-        $data = DB::table('users')->where('user_id', $id)->first();
+        $data = Input::all();
+        if ($data != null) {
+            $id = $data['user_id'];
+            $dataU = DB::table('users')->where('user_id', $id)->first();
 
-        if($data!=null)
-        {
-            $match = ['user_id' => $id, 'is_attended' => 'N'];
-            $team = DB::table('user_events')->where($match)->get();
+            if ($dataU != null) {
+                $match = ['user_id' => $id, 'is_attended' => 'N'];
+                $team = DB::table('user_events')->where($match)->get();
 
 
-            foreach($team as $item)
-            {
-               $data1 =  EventsView::where('event_id',$item->event_id)->get();
-                if ($data1 != null) {
-                    $result[] =$data1;
+                foreach ($team as $item) {
+                    $data1 = EventsView::where('event_id', $item->event_id)->get();
+                    if ($data1 != null) {
+                        $result[] = $data1;
+                    }
                 }
-            }
 
-            if($team!=null) {
-                return Response::json(array( 'status' => 200,'datajson' => $result));
-            }
-            else{
-                return Response::json(array('status' => '405', 'datajson' => 'no record found.'));
+                if ($team != null) {
+                    return Response::json(array('status' => 200, 'datajson' => array('events'=>$result)));
+                } else {
+                    return Response::json(array('status' => 200, 'datajson' => 'no record found'));
+                }
+            } else {
+                return Response::json(array('status' => 200, 'datajson' => 'user not exist'));
             }
         }
-        else{
-            return Response::json(array('status' => '405', 'datajson' => 'user not exist.'));
+        else
+        {
+            return Response::json(array('status' => 203, 'datajson' => 'invalid query string'));
         }
 
     }
